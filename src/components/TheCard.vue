@@ -1,5 +1,7 @@
 <template>
-  <div class="card-wrapper-left">
+  <div
+    class="card-wrapper-left"
+    ref="cardRef">
     <select
       v-model="lang"
       @change="handleChangeLang">
@@ -24,15 +26,20 @@
   </div>
 </template>
 <script setup>
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
   import img1 from '../assets/images/bgcard.jpg';
   import img2 from '../assets/images/bgcard2.png';
   import img3 from '../assets/images/pattern.png';
 
-  const props = defineProps(['personName', 'language', 'rootElement']);
-  const emit = defineEmits(['langChange']);
+  const props = defineProps(['personName', 'language']);
+  const emit = defineEmits(['langChange', 'getWrapperElement']);
 
   const lang = ref(props.language);
+  const cardRef = ref(null);
+
+  onMounted(() => {
+    emit('getWrapperElement', cardRef.value);
+  });
 
   const imgsMap = {
     0: {
@@ -64,46 +71,41 @@
 
     localStorage.setItem('lang', langValue);
 
-    props.rootElement.setAttribute('lang', langValue);
-    props.rootElement.setAttribute('dir', langValue === 'ar' ? 'rtl' : 'ltr');
-
     emit('langChange');
   };
 </script>
 <style scoped>
-
-.card-wrapper-left {
-  flex: 0 0 auto;
-  max-height: 535px;
-  overflow: hidden;
-  position: relative;
+  .card-wrapper-left {
+    flex: 0 0 auto;
+    max-height: 535px;
+    overflow: hidden;
+    position: relative;
   }
 
   .card-wrapper-left img {
-  max-width: 100%;
-  height: 100%;
-  max-width: 500px;
-  width: 500px;
-}
-
+    max-width: 100%;
+    height: 100%;
+    max-width: 500px;
+    width: 500px;
+  }
 
   .receiver-wrapper {
-  position: absolute;
-  bottom: 40%;
-  right: 26%;
-  min-width: 239px;
-}
+    position: absolute;
+    bottom: 40%;
+    right: 26%;
+    min-width: 239px;
+  }
 
-.receiver-name {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 32px;
-  color: #08266e;
-  margin: 0;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: bold;
-}
+  .receiver-name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 32px;
+    color: #08266e;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+  }
 </style>

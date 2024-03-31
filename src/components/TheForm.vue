@@ -48,7 +48,7 @@
   import FormAction from './FormAction.vue';
   import { useI18n } from 'vue-i18n';
 
-  defineProps(['wrapperElement', 'language']);
+  defineProps(['wrapperElement']);
 
   const { t } = useI18n();
 

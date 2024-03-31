@@ -1,15 +1,17 @@
 <template>
-  <section class="full-bg">
+  <section
+    class="full-bg"
+    :dir="dirEl"
+    :lang="langEl">
     <div class="card-wrapper">
       <TheForm
-        :language
         @nameEnter="getName"
         :wrapperElement />
       <TheCard
+      @getWrapperElement="getWrapperElement"
         @lang-change="handleChangeLang"
         :personName="personName"
-        :language
-        :rootElement />
+        :language="langEl" />
     </div>
   </section>
 </template>
@@ -21,14 +23,13 @@
 
   const { locale } = useI18n();
 
-  const language = ref(
-    localStorage.getItem('lang') || window?.navigator?.language || 'ar'
-  );
+  const language =
+    localStorage.getItem('lang') || window?.navigator?.language || 'ar';
 
-  const rootElement = document.documentElement;
-  rootElement.setAttribute('lang', language.value);
-  rootElement.setAttribute('dir', language.value === 'ar' ? 'rtl' : 'ltr');
-  locale.value = language.value;
+  const dirEl = ref(language === 'ar' ? 'rtl' : 'ltr');
+  const langEl = ref(language);
+
+  locale.value = language;
 
   const personName = ref('');
   const wrapperElement = ref(null);
@@ -38,6 +39,13 @@
 
   const handleChangeLang = () => {
     locale.value = localStorage.getItem('lang') || 'ar';
+
+    langEl.value = locale.value;
+    dirEl.value = locale.value === 'ar' ? 'rtl' : 'ltr';
+  };
+
+  const getWrapperElement = (element) => {
+    wrapperElement.value = element;
   };
 </script>
 
