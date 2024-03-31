@@ -108,4 +108,47 @@
     }
   };
 </script>
-<style></style>
+<style scoped>
+.download {
+  background: #00c4e5;
+  border-radius: 6px;
+  height: 37px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.share {
+  background: #08266e;
+  border-radius: 6px;
+  height: 37px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.download,
+.reload,
+.share {
+  margin-bottom: 16px;
+}
+
+.reload {
+  background: #d4e3f7;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #00c4e5;
+  height: 47px;
+  border: none;
+  cursor: pointer;
+}
+
+</style>

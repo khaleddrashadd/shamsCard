@@ -40,4 +40,24 @@
     locale.value = localStorage.getItem('lang') || 'ar';
   };
 </script>
-<style></style>
+
+<style scoped>
+  .card-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    min-height: 100vh;
+    height: 100%;
+  }
+
+  .full-bg {
+    background-image: url('./images/pattern.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    background-position: 100% 100%;
+    height: 100%;
+  }
+</style>

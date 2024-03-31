@@ -5,7 +5,7 @@
         src="../assets/images/shams-logo.png"
         alt="shams-logo" />
       <p>{{ t('message.cardMessage') }}</p>
-      <form action="">
+      <form>
         <div class="name-input">
           <label
             v-if="!isCreated"
@@ -16,6 +16,7 @@
             v-if="!isCreated"
             maxlength="30"
             class="input-name"
+            :class="{'red-border': !isNameValid && startValidate}"
             type="text"
             :placeholder="t('message.name')"
             @input="() => (isNameValid = !!nameInput.trim())"
@@ -47,7 +48,7 @@
   import FormAction from './FormAction.vue';
   import { useI18n } from 'vue-i18n';
 
-  defineProps(['wrapperElement','language']);
+  defineProps(['wrapperElement', 'language']);
 
   const { t } = useI18n();
 
@@ -73,17 +74,97 @@
     isCreated.value = true;
   };
 
-  watch(nameInput, (newVal) => {
-    if (!newVal && startValidate.value) {
-      isNameValid.value = false;
-    }
-  });
-
   const handleReset = () => {
     isCreated.value = false;
     nameInput.value = '';
     startValidate.value = false;
     isNameValid.value = false;
   };
+
+  watch(nameInput, (newVal) => {
+    if (!newVal && startValidate.value) {
+      isNameValid.value = false;
+    }
+  });
 </script>
-<style></style>
+<style scoped>
+  .card-wrapper-right {
+    flex: 0 0 30%;
+  }
+
+  .card-wrapper-right-container {
+  background-color: #fff;
+  border: 1px solid #e5f9fc;
+  padding: 75px 24px;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.card-wrapper-right-container img {
+  display: block;
+  margin: auto;
+  padding-bottom: 32px;
+}
+
+.card-wrapper-right-container p {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: #00c4e5;
+  text-align: center;
+}
+
+.name-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-input label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #08266e;
+  padding-bottom: 6px;
+}
+
+.name-input .input-name {
+  background-color: #fff;
+  border: 1px solid #eef0f8;
+  border-radius: 6px;
+  height: 41px;
+  padding-right: 10px;
+  margin-bottom: 16px;
+  font-family: 'Almarai', sans-serif;
+  outline: none;
+}
+.name-input .input-name:focus-visible {
+  border: 1px solid #00c4e5;
+}
+
+.name-input .input-name.red-border {
+  border-color: #f00;
+}
+
+
+.name-input .alert {
+  color: #f00;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 0;
+}
+
+.name-input-submit {
+  background: #00c4e5;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 12px 0;
+}
+
+</style>
