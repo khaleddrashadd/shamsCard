@@ -1,0 +1,284 @@
+html {
+  box-sizing: border-box;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Almarai', sans-serif;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.full-bg {
+  background-image: url('./images/pattern.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  background-position: 100% 100%;
+  height: 100%;
+}
+
+button {
+  font-family: 'Almarai', sans-serif;
+}
+
+.card-wrapper-left img {
+  max-width: 100%;
+  height: 100%;
+  max-width: 500px;
+  width: 500px;
+}
+
+.card-wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.card-wrapper-left {
+  flex: 0 0 auto;
+}
+
+.card-wrapper-right {
+  flex: 0 0 30%;
+}
+
+.card-wrapper-right-container {
+  background-color: #fff;
+  border: 1px solid #e5f9fc;
+  padding: 75px 24px;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.card-wrapper-right-container img {
+  display: block;
+  margin: auto;
+  padding-bottom: 32px;
+}
+
+.card-wrapper-right-container p {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: #00c4e5;
+  text-align: center;
+}
+
+.name-input {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.name-input label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #08266e;
+  padding-bottom: 6px;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.name-input .input-name {
+  background-color: #fff;
+  border: 1px solid #eef0f8;
+  border-radius: 6px;
+  height: 41px;
+  text-align: right;
+  padding-right: 10px;
+  margin-bottom: 16px;
+  font-family: 'Almarai', sans-serif;
+  outline: none;
+}
+.name-input .input-name:focus-visible {
+  border: 1px solid #00c4e5;
+}
+
+.name-input .input-name.red-border {
+  border-color: #f00;
+}
+
+.name-input-submit {
+  background: #00c4e5;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.download {
+  background: #00c4e5;
+  border-radius: 6px;
+  height: 37px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.share {
+  background: #08266e;
+  border-radius: 6px;
+  height: 37px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.download,
+.reload,
+.share {
+  margin-bottom: 16px;
+}
+
+.reload {
+  background: #d4e3f7;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #00c4e5;
+  height: 47px;
+  border: none;
+  cursor: pointer;
+}
+
+.card-wrapper-left {
+  max-height: 535px;
+  overflow: hidden;
+  position: relative;
+}
+
+.receiver-name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 32px;
+  color: #08266e;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+.receiver-wrapper {
+  /* position: absolute;
+    bottom: 8.5%;
+    right: 0%;
+    min-width: 239px; */
+  position: absolute;
+  bottom: 40%;
+  right: 26%;
+  min-width: 239px;
+}
+
+canvas {
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  visibility: hidden;
+}
+
+.name-input .alert {
+  color: #f00;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .card-wrapper {
+    flex-direction: column;
+  }
+
+  .receiver-wrapper {
+    position: absolute;
+    /* bottom: 8.5%;
+		right: 0%; */
+    bottom: 24.5%;
+    right: 26%;
+    transform: none;
+    min-width: 150px;
+  }
+
+  .receiver-name {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .card-wrapper-right {
+    flex: auto;
+    width: 100%;
+    padding-top: 16px;
+  }
+
+  .card-wrapper {
+    flex-direction: column;
+    padding: 30px 0;
+    width: 320px;
+  }
+
+  .card-wrapper-left {
+    max-height: 320px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-wrapper-left img {
+    width: 320px;
+  }
+}
+
+.show-mob {
+  display: none;
+}
+
+.hide-mob {
+  display: black;
+}
+
+@media (max-width: 767px) {
+  .hide-mob {
+    display: none;
+  }
+
+  .show-mob {
+    display: block;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+  .card-wrapper-left {
+    max-height: 535px;
+  }
+
+  .card-wrapper-left img {
+    max-width: 535px;
+  }
+}
