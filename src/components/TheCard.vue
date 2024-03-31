@@ -3,8 +3,8 @@
     <select
       v-model="lang"
       @change="handleChangeLang">
-      <option value="arabic">العربية</option>
-      <option value="english">English</option>
+      <option value="ar">العربية</option>
+      <option value="en">English</option>
     </select>
     <div class="receiver-wrapper">
       <p class="receiver-name">{{ personName }}</p>
@@ -24,19 +24,12 @@
   </div>
 </template>
 <script setup>
-  import { ref, watch } from 'vue';
-  defineProps(['personName']);
-  const lang = ref('arabic');
-  watch(lang, (newVal) => {
-    console.log(newVal);
-    if (newVal === 'arabic') {
-      document.querySelector('html').setAttribute('lang', 'ar');
-      document.querySelector('html').setAttribute('dir', 'rtl');
-    } else {
-      document.querySelector('html').setAttribute('lang', 'en');
-      document.querySelector('html').setAttribute('dir', 'ltr');
-    }
-  });
+  import { ref } from 'vue';
+  const props = defineProps(['personName', 'language','rootElement']);
+
+  const emit = defineEmits(['langChange']);
+
+  const lang = ref(props.language);
 
   import img1 from '../assets/images/bgcard.jpg';
   import img2 from '../assets/images/bgcard2.png';
@@ -44,20 +37,20 @@
 
   const imgsMap = {
     0: {
-      arabic: img1,
-      english: img1,
+      ar: img1,
+      en: img1,
     },
     1: {
-      arabic: img2,
-      english: img3,
+      ar: img2,
+      en: img3,
     },
     2: {
-      arabic: img1,
-      english: img1,
+      ar: img1,
+      en: img1,
     },
   };
 
-  const imgSrc = ref(imgsMap[0].arabic);
+  const imgSrc = ref(imgsMap[0].ar);
   const imgIndex = ref(0);
   const imgsArr = Object.values(imgsMap);
 
@@ -67,7 +60,15 @@
   };
 
   const handleChangeLang = () => {
+    const langValue = lang.value.toLowerCase().slice(0, 2);
     imgSrc.value = imgsArr[imgIndex.value][lang.value];
+    localStorage.setItem('lang', langValue);
+
+   props.rootElement.setAttribute('lang', langValue);
+    props.rootElement
+      .setAttribute('dir', langValue === 'ar' ? 'rtl' : 'ltr');
+
+    emit('langChange');
   };
 </script>
 <style lang=""></style>

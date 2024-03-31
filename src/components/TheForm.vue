@@ -4,26 +4,26 @@
       <img
         src="../assets/images/shams-logo.png"
         alt="shams-logo" />
-      <p>بطاقة تهنئة بإسمك</p>
+      <p>{{ t('message.cardMessage') }}</p>
       <form action="">
         <div class="name-input">
           <label
             v-if="!isCreated"
             for="name"
-            >ادخل اسمك</label
+            >{{ t('message.enterName') }}</label
           >
           <input
             v-if="!isCreated"
             maxlength="30"
             class="input-name"
             type="text"
-            placeholder="الاسم"
-            @input="()=>isNameValid = !!nameInput.trim()"
+            :placeholder="t('message.name')"
+            @input="() => (isNameValid = !!nameInput.trim())"
             v-model.trim="nameInput" />
           <label
             class="alert"
             v-if="!isNameValid && startValidate"
-            >الرجاء ادخال الاسم</label
+            >{{ t('message.nameValidation') }}</label
           >
           <FormAction
             :wrapperElement="wrapperElement"
@@ -35,7 +35,7 @@
             @click="handleCreateName"
             type="button"
             class="name-input-submit">
-            إنشاء
+            {{ t('message.create') }}
           </button>
         </div>
       </form>
@@ -45,8 +45,11 @@
 <script setup>
   import { ref, watch } from 'vue';
   import FormAction from './FormAction.vue';
+  import { useI18n } from 'vue-i18n';
 
-  defineProps(['wrapperElement']);
+  defineProps(['wrapperElement','language']);
+
+  const { t } = useI18n();
 
   const nameInput = ref('');
   const isCreated = ref(false);
@@ -73,7 +76,7 @@
   watch(nameInput, (newVal) => {
     if (!newVal && startValidate.value) {
       isNameValid.value = false;
-    } 
+    }
   });
 
   const handleReset = () => {
@@ -82,6 +85,5 @@
     startValidate.value = false;
     isNameValid.value = false;
   };
-
 </script>
 <style></style>

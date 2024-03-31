@@ -3,31 +3,35 @@
     @click="handleDownload"
     class="download"
     type="button">
-    تحميل
+    {{ t('message.download') }}
   </button>
   <button
     @click="handleShare"
     class="share"
     type="button">
-    مشاركة
+    {{ t('message.share') }}
   </button>
   <button
-    @click="()=>{
-      $emit('reCreate')
-      $emit('reset')
-    }"
+    @click="
+      () => {
+        $emit('reCreate');
+        $emit('reset');
+      }
+    "
     type="button"
     class="reload">
-    اعادة مره اخرى
+    {{ t('message.redo') }}
   </button>
 </template>
 <script setup>
-  import { onMounted } from 'vue';
+  import { useI18n } from 'vue-i18n';
   import html2canvas from 'html2canvas';
 
   defineOptions({
     inheritAttrs: false,
   });
+
+  const { t } = useI18n();
 
   const element = document.querySelector('.card-wrapper-left');
 
@@ -91,19 +95,16 @@
         a.click();
       });
     } else {
-      html2canvas(element).then(
-        (canvas) => {
-          document.body.appendChild(canvas);
-          const a = document.createElement('a');
-          a.href = canvas
-            .toDataURL('image/png', 0.25)
-            .replace('image/png', 'image/octet-stream');
-          a.download = 'Eid-Mubarak.png';
-          a.click();
-          a.remove();
-          
-        }
-      );
+      html2canvas(element).then((canvas) => {
+        document.body.appendChild(canvas);
+        const a = document.createElement('a');
+        a.href = canvas
+          .toDataURL('image/png', 0.25)
+          .replace('image/png', 'image/octet-stream');
+        a.download = 'Eid-Mubarak.png';
+        a.click();
+        a.remove();
+      });
     }
   };
 </script>
