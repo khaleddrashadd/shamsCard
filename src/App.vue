@@ -8,7 +8,7 @@
         v-model="langEl"
         @lang-change="handleChangeLang" />
       <TheForm
-        @nameEnter="getName"
+        @nameEnter="getName" :language="langEl"
         :wrapperElement />
       <TheCard
         @getWrapperElement="getWrapperElement"

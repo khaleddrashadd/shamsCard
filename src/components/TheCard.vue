@@ -17,19 +17,39 @@
         :src="imgSrc"
         alt="Shams-Eids" />
     </div>
+
+    <div class="gallery-wrapper">
+      <div
+        @click="handleChangeSrc(src)"
+        class="gallery-item"
+        v-for="(src, index) in gallery"
+        :key="index">
+        <img
+          :src
+          alt="" />
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
-  import { ref, onMounted } from 'vue';
-  import img1 from '../assets/images/bgcard.jpg';
-  import img2 from '../assets/images/bgcard2.png';
-  import img3 from '../assets/images/pattern.png';
+  import { ref, onMounted, watch } from 'vue';
+  import {
+    img_1,
+    img_2,
+    img_3,
+    img_4,
+    img_5,
+    img_en_1,
+    img_en_2,
+    img_en_3,
+    img_en_4,
+    img_en_5,
+  } from '../assets/images';
   import { watchEffect } from 'vue';
 
   const props = defineProps(['personName', 'language']);
   const emit = defineEmits(['langChange', 'getWrapperElement']);
 
-  const lang = ref(props.language);
   const cardRef = ref(null);
 
   onMounted(() => {
@@ -38,37 +58,55 @@
 
   const imgsMap = {
     0: {
-      ar: img1,
-      en: img1,
+      ar: img_1,
+      en: img_en_1,
     },
     1: {
-      ar: img2,
-      en: img3,
+      ar: img_2,
+      en: img_en_2,
     },
     2: {
-      ar: img1,
-      en: img1,
+      ar: img_3,
+      en: img_en_3,
+    },
+    3: {
+      ar: img_4,
+      en: img_en_4,
+    },
+    4: {
+      ar: img_5,
+      en: img_en_5,
     },
   };
+
+  const gallery = ref(
+    Object.values(imgsMap).map((item) => item[props.language])
+  );
+
+  watch(
+    () => props.language,
+    (newVal) => {
+      gallery.value = Object.values(imgsMap).map((item) => item[newVal]);
+    }
+  );
 
   const imgSrc = ref(imgsMap[0].ar);
   const imgIndex = ref(0);
   const imgsArr = Object.values(imgsMap);
 
-  const handleChangeSrc = () => {
-    imgIndex.value = (imgIndex.value + 1) % imgsArr.length;
-    imgSrc.value = imgsArr[imgIndex.value][props.language];
+  const handleChangeSrc = (src) => {
+    imgSrc.value = src;
   };
 
   watchEffect(() => {
     imgSrc.value = imgsArr[imgIndex.value][props.language];
-
   });
 </script>
 <style scoped>
   .card-wrapper-left {
+    display: flex;
+    gap: 48px;
     flex: 0 0 auto;
-    max-height: 535px;
     overflow: hidden;
     position: relative;
   }
@@ -98,5 +136,28 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: bold;
+  }
+  .gallery-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    flex-direction: column;
+  }
+  .gallery-item {
+    width: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .gallery-item > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    object-fit: cover;
   }
 </style>

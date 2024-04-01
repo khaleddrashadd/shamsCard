@@ -3,7 +3,7 @@
     <button
       @click="handleChangeLang"
       class="lang-switch-btn">
-      {{ model }}
+      {{ model=== 'ar' ? 'En' : 'ع'}}
     </button>
   </div>
 </template>
