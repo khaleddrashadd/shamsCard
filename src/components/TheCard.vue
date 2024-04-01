@@ -146,6 +146,14 @@
     margin-top: 20px;
     flex-direction: column;
   }
+  @media (max-width: 1157px) {
+    .gallery-wrapper{
+      flex-direction: row;
+    }
+    .card-wrapper-left {
+      flex-direction: column;
+    }
+  }
   .gallery-item {
     width: 100px;
     aspect-ratio: 1/1;
