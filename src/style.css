@@ -40,9 +40,8 @@ canvas {
     /* bottom: 8.5%;
 		right: 0%; */
     bottom: 24.5%;
-    right: 26%;
     transform: none;
-    min-width: 150px;
+    max-width: 150px;
   }
 
   .receiver-name {
@@ -78,16 +77,27 @@ canvas {
 }
 
 .hide-mob {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 @media (max-width: 767px) {
   .hide-mob {
-    display: none;
+    display: nonse;
   }
-
+  
   .show-mob {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
+}
+
+.show-mob .receiver-wrapper{
+  max-width: 151px;
+  /* right: 28%; */
 }
 
