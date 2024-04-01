@@ -2,12 +2,6 @@
   <div
     class="card-wrapper-left"
     ref="cardRef">
-    <select
-      v-model="lang"
-      @change="handleChangeLang">
-      <option value="ar">العربية</option>
-      <option value="en">English</option>
-    </select>
     <div class="receiver-wrapper">
       <p class="receiver-name">{{ personName }}</p>
     </div>
@@ -30,6 +24,7 @@
   import img1 from '../assets/images/bgcard.jpg';
   import img2 from '../assets/images/bgcard2.png';
   import img3 from '../assets/images/pattern.png';
+  import { watchEffect } from 'vue';
 
   const props = defineProps(['personName', 'language']);
   const emit = defineEmits(['langChange', 'getWrapperElement']);
@@ -62,17 +57,13 @@
 
   const handleChangeSrc = () => {
     imgIndex.value = (imgIndex.value + 1) % imgsArr.length;
-    imgSrc.value = imgsArr[imgIndex.value][lang.value];
+    imgSrc.value = imgsArr[imgIndex.value][props.language];
   };
 
-  const handleChangeLang = () => {
-    const langValue = lang.value.toLowerCase().slice(0, 2);
-    imgSrc.value = imgsArr[imgIndex.value][lang.value];
+  watchEffect(() => {
+    imgSrc.value = imgsArr[imgIndex.value][props.language];
 
-    localStorage.setItem('lang', langValue);
-
-    emit('langChange');
-  };
+  });
 </script>
 <style scoped>
   .card-wrapper-left {

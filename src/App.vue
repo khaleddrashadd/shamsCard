@@ -4,11 +4,14 @@
     :dir="dirEl"
     :lang="langEl">
     <div class="card-wrapper">
+      <TheLangSwitcher
+        v-model="langEl"
+        @lang-change="handleChangeLang" />
       <TheForm
         @nameEnter="getName"
         :wrapperElement />
       <TheCard
-      @getWrapperElement="getWrapperElement"
+        @getWrapperElement="getWrapperElement"
         @lang-change="handleChangeLang"
         :personName="personName"
         :language="langEl" />
@@ -20,6 +23,7 @@
   import { ref } from 'vue';
   import TheForm from './components/TheForm.vue';
   import TheCard from './components/TheCard.vue';
+  import TheLangSwitcher from './components/TheLangSwitcher.vue';
 
   const { locale } = useI18n();
 
@@ -28,6 +32,7 @@
 
   const dirEl = ref(language === 'ar' ? 'rtl' : 'ltr');
   const langEl = ref(language);
+  const langModel = ref(langEl.value);
 
   locale.value = language;
 
@@ -58,6 +63,7 @@
     margin: auto;
     min-height: 100vh;
     height: 100%;
+    flex-wrap: wrap;
   }
 
   .full-bg {
