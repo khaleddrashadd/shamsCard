@@ -38,7 +38,7 @@
   const element = props.wrapperElement;
 
   const handleShare = () => {
-    console.log(element)
+    console.log(element);
     element.classList.add('scale');
     html2canvas(element).then((canvas) => {
       document.body.appendChild(canvas);
@@ -66,12 +66,12 @@
         new File([blob], 'Eid-Mubarak.jpg', { type: 'image/jpeg' }),
       ];
 
-      if (navigator.share) {
+      if (navigator.canShare({ files: filesArray })) {
         navigator
           .share({
-            title: 'Ramadan Kareem',
-            text: 'Check out this beautiful Ramadan Kareem card!',
-            files: [...filesArray], // Pass the array directly
+            title: 'eid mubarak',
+
+            files: [...filesArray],
           })
           .then(() => console.log('Successful share'))
           .catch((error) => console.log('Error sharing', error));
