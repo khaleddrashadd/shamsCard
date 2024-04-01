@@ -38,7 +38,6 @@
   const element = props.wrapperElement;
 
   const handleShare = () => {
-    console.log(element);
     element.classList.add('scale');
     html2canvas(element).then((canvas) => {
       document.body.appendChild(canvas);
