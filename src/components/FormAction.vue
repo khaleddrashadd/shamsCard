@@ -26,7 +26,6 @@
 <script setup>
   import { useI18n } from 'vue-i18n';
   import html2canvas from 'html2canvas';
-
   defineOptions({
     inheritAttrs: false,
   });
@@ -38,6 +37,9 @@
   const element = props.wrapperElement;
 
   const handleShare = () => {
+    if(navigator.vibrate) {
+      navigator.vibrate(10);
+    }
     element.classList.add('scale');
     html2canvas(element).then((canvas) => {
       document.body.appendChild(canvas);
@@ -64,10 +66,10 @@
       const filesArray = [
         new File([blob], 'Eid-Mubarak.jpg', { type: 'image/jpeg' }),
       ];
-
-      if (navigator.canShare({ files: filesArray })) {
+      if (navigator.canShare&&navigator.share&&navigator.canShare({ files: filesArray })) {
         navigator
           .share({
+            text: 'h',
             files: [...filesArray],
           })
           .then(() => console.log('Successful share'))
