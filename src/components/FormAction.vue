@@ -69,8 +69,6 @@
       if (navigator.canShare({ files: filesArray })) {
         navigator
           .share({
-            title: 'eid mubarak',
-
             files: [...filesArray],
           })
           .then(() => console.log('Successful share'))
