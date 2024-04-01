@@ -107,7 +107,6 @@
     display: flex;
     gap: 48px;
     flex: 0 0 auto;
-    overflow: hidden;
     position: relative;
   }
 

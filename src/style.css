@@ -64,7 +64,6 @@ canvas {
   }
 
   .card-wrapper-left {
-    max-height: 320px;
     overflow: hidden;
     position: relative;
   }
@@ -92,12 +91,3 @@ canvas {
   }
 }
 
-@media (min-width: 767px) and (max-width: 991px) {
-  .card-wrapper-left {
-    max-height: 535px;
-  }
-
-  .card-wrapper-left img {
-    max-width: 535px;
-  }
-}
