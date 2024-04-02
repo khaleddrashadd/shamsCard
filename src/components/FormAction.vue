@@ -36,95 +36,49 @@
 
   const element = props.wrapperElement;
 
-  // const handleShare = () => {
-  //   if(navigator.vibrate) {
-  //     navigator.vibrate(10);
-  //   }
-  //   element.classList.add('scale');
-  //   html2canvas(element).then((canvas) => {
-  //     document.body.appendChild(canvas);
-
-  //     // Convert canvas to data URL
-  //     const imageData = canvas.toDataURL('image/jpeg');
-
-  //     // Helper function to convert data URL to Blob
-  //     function dataURItoBlob(dataURI) {
-  //       const byteString = atob(dataURI.split(',')[1]);
-  //       const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-  //       const ab = new ArrayBuffer(byteString.length);
-  //       const ia = new Uint8Array(ab);
-  //       for (let i = 0; i < byteString.length; i++) {
-  //         ia[i] = byteString.charCodeAt(i);
-  //       }
-  //       return new Blob([ab], { type: mimeString });
-  //     }
-
-  //     // Convert data URL to Blob
-  //     const blob = dataURItoBlob(imageData);
-
-  //     // Create a File instance from the Blob
-  //     const filesArray = [
-  //       new File([blob], 'Eid-Mubarak.jpg', { type: 'image/jpeg' }),
-  //     ];
-  //     if (navigator.canShare&&navigator.share&&navigator.canShare({ files: filesArray })) {
-  //       navigator
-  //         .share({
-  //           files: [...filesArray],
-  //         })
-  //         .then(() => console.log('Successful share'))
-  //         .catch((error) => console.log('Error sharing', error));
-  //     } else {
-  //       alert('متصفحك لا يدعم هذه الخاصية');
-  //     }
-  //   });
-  // };
-
-
-
-
-
-
-const handleShare = () => {
-    if (navigator.vibrate) {
-        navigator.vibrate(10);
+  const handleShare = () => {
+    if(navigator.vibrate) {
+      navigator.vibrate(10);
     }
     element.classList.add('scale');
     html2canvas(element).then((canvas) => {
-        // Convert canvas to data URL
-        const imageData = canvas.toDataURL('image/jpeg');
+      document.body.appendChild(canvas);
 
-        // Share the image using navigator.share
-        if (navigator.share) {
-            navigator.share({
-                files: [new File([dataURItoBlob(imageData)], 'Eid-Mubarak.jpg', { type: 'image/jpeg' })]
-            })
-                .then(() => console.log('Shared successfully'))
-                .catch((error) => console.error('Error sharing:', error));
-        } else {
-            console.error('navigator.share is not supported');
+      // Convert canvas to data URL
+      const imageData = canvas.toDataURL('image/jpeg');
+
+      // Helper function to convert data URL to Blob
+      function dataURItoBlob(dataURI) {
+        const byteString = atob(dataURI.split(',')[1]);
+        const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
         }
+        return new Blob([ab], { type: mimeString });
+      }
+
+      // Convert data URL to Blob
+      const blob = dataURItoBlob(imageData);
+
+      // Create a File instance from the Blob
+      const filesArray = [
+        new File([blob], 'Eid-Mubarak.jpg', { type: 'image/jpeg' }),
+      ];
+      if (navigator.canShare&&navigator.share&&navigator.canShare({ files: filesArray })) {
+        navigator
+          .share({
+            text:'Eid Mubarak',
+            // files: [...filesArray],
+          })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+      } else {
+        alert('متصفحك لا يدعم هذه الخاصية');
+      }
     });
-};
-
-// Helper function to convert data URI to Blob
-function dataURItoBlob(dataURI) {
-    const byteString = atob(dataURI.split(',')[1]);
-    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], { type: mimeString });
-}
-
-
-
-
-
-
-
-
+  };
 
   const handleDownload = () => {
     element.classList.add('scale');
