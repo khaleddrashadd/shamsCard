@@ -82,7 +82,9 @@
 
 
 
-  const handleShare = () => {
+
+
+const handleShare = () => {
     if (navigator.vibrate) {
         navigator.vibrate(10);
     }
@@ -91,36 +93,36 @@
         // Convert canvas to data URL
         const imageData = canvas.toDataURL('image/jpeg');
 
-        // Create a Blob from the data URL
-        const blob = dataURItoBlob(imageData);
-
-        // Create a File from the Blob
-        const file = new File([blob], 'Eid-Mubarak.jpg', { type: 'image/jpeg' });
-
-        // Check if the browser supports sharing files
-        if (navigator.canShare && navigator.share && navigator.canShare({ files: [file] })) {
-            // Share the file directly
-            navigator.share({ files: [file] })
-                .then(() => console.log('Successful share'))
-                .catch((error) => console.log('Error sharing', error));
+        // Share the image using navigator.share
+        if (navigator.share) {
+            navigator.share({
+                files: [new File([dataURItoBlob(imageData)], 'Eid-Mubarak.jpg', { type: 'image/jpeg' })]
+            })
+                .then(() => console.log('Shared successfully'))
+                .catch((error) => console.error('Error sharing:', error));
         } else {
-            // Fallback for browsers that don't support file sharing
-            alert('Your browser does not support direct sharing. The image has been saved to your device. You can share it manually from your photo gallery.');
+            console.error('navigator.share is not supported');
         }
-
-        // Helper function to convert data URL to Blob
-        function dataURItoBlob(dataURI) {
-            const byteString = atob(dataURI.split(',')[1]);
-            const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-            const ab = new ArrayBuffer(byteString.length);
-            const ia = new Uint8Array(ab);
-            for (let i = 0; i < byteString.length; i++) {
-                ia[i] = byteString.charCodeAt(i);
-            }
-            return new Blob([ab], { type: mimeString });
-        }
-    });
+    });
 };
+
+// Helper function to convert data URI to Blob
+function dataURItoBlob(dataURI) {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+}
+
+
+
+
+
+
 
 
 
