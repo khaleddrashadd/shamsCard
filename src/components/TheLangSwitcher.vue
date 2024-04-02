@@ -40,6 +40,6 @@ import { nextTick } from 'vue';
     cursor: pointer;
     text-align: center;
     text-align: center;
-    padding: 4px;
+    padding: 8px 16px;
   }
 </style>

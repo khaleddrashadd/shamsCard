@@ -69,7 +69,7 @@
       if (navigator.canShare&&navigator.share&&navigator.canShare({ files: filesArray })) {
         navigator
           .share({
-            text: 'h',
+            // text: 'h',
             files: [...filesArray],
           })
           .then(() => console.log('Successful share'))
@@ -83,11 +83,7 @@
   const handleDownload = () => {
     element.classList.add('scale');
     if (screen.width < 767) {
-      html2canvas(document.querySelector('.card-wrapper-left'), {
-        width: 320,
-        height: 320,
-        scale: 3,
-      }).then((canvas) => {
+      html2canvas(element).then((canvas) => {
         document.body.appendChild(canvas);
         var a = document.createElement('a');
         a.href = canvas

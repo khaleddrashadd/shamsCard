@@ -69,7 +69,7 @@
   }
 
   .full-bg {
-    background-image: url('./images/pattern.png');
+    /* background-image: url('./images/pattern.png'); */
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
