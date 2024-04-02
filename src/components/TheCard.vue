@@ -18,21 +18,6 @@
         </p>
       </div>
     </div>
-    <!-- <div class="show-mob">
-      <img
-        :src="imgSrc"
-        alt="Shams-Eids" />
-            <div
-      class="receiver-wrapper"
-      :style="{ bottom: imgTop }">
-      <p
-        class="receiver-name"
-        :class="{ 'light-text': isLight }">
-        {{ personName }}
-      </p>
-    </div>
-
-    </div> -->
 
     <div class="gallery-wrapper">
       <div
