@@ -224,6 +224,15 @@
       flex-direction: column;
     }
   }
+
+    @media screen and (max-width: 991px){
+    .gallery-wrapper{
+      order: -1;
+    }
+  }
+
+
+
   .gallery-item {
     width: 100px;
     aspect-ratio: 1/1;
