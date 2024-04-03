@@ -60,7 +60,7 @@
     const filesArray = [
       new File([blob], 'Eid-Mubarak.jpg', { type: 'image/jpeg' }),
     ];
-    if (!navigator.share) {
+    if (!navigator.share && !navigator.canShare({ files: filesArray })) {
       alert('Your browser does not support this feature');
       return;
     }
@@ -70,7 +70,7 @@
         files: [...filesArray],
       });
     } catch (error) {
-      console.log('Error sharing', error);
+      alert('Your browser does not support this feature');
     }
   };
 
