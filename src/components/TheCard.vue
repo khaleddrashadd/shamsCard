@@ -4,7 +4,7 @@
     >
     <div ref="cardRef"
       class="hide-mob"
-      @click="handleChangeSrc">
+     >
       <img
         :src="imgSrc"
         alt="Shams-Eids" />
