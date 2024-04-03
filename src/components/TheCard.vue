@@ -53,7 +53,7 @@
 
   const cardRef = ref(null);
   const isLight = ref(false);
-  const imgTop = ref(props.language === 'ar' ? '20.5%' : '19.5%');
+  const imgTop = ref(props.language === 'ar' ? '21.5%' : '20.5%');
   const imgRight = ref('30%');
 
   onMounted(() => {
@@ -65,12 +65,12 @@
       ar: {
         src: img_1,
         right: '30%',
-        top: '20.5%',
+        top: '21.5%',
       },
       en: {
         src: img_en_1,
         right: '30%',
-        top: '19.5%',
+        top: '20.5%',
       },
       dark: false,
     },
@@ -78,12 +78,12 @@
       ar: {
         src: img_2,
         right: '30%',
-        top: '17%',
+        top: '18%',
       },
       en: {
         src: img_en_2,
         right: '30%',
-        top: '16%',
+        top: '17%',
       },
       dark: true,
     },
@@ -91,12 +91,12 @@
       ar: {
         src: img_3,
         right: '30%',
-        top: '26%',
+        top: '27%',
       },
       en: {
         src: img_en_3,
         right: '30%',
-        top: '24%',
+        top: '25%',
       },
       dark: false,
     },
@@ -104,12 +104,12 @@
       ar: {
         src: img_4,
         right: '30%',
-        top: '8.5%',
+        top: '9.5%',
       },
       en: {
         src: img_en_4,
         right: '30%',
-        top: '9%',
+        top: '10%',
       },
       dark: true,
     },
@@ -117,12 +117,12 @@
       ar: {
         src: img_5,
         right: '30%',
-        top: '12.5%',
+        top: '13.5%',
       },
       en: {
         src: img_en_5,
         right: '30%',
-        top: '9%',
+        top: '10%',
       },
       dark: false,
     },
@@ -182,13 +182,13 @@
   .receiver-name {
     font-weight: 500;
     font-size: 16px;
-    line-height: 18px;
+    /* line-height: 18px; */
     color: #08266e;
     margin: 0;
     width: 100%;
     text-align: center;
     white-space: wrap;
-    overflow: hidden;
+    /* overflow: hidden; */
     font-weight: bold;
     display: inline-block;
   }

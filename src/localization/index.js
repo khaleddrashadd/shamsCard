@@ -9,6 +9,7 @@ export const messages = {
       download: 'Download',
       share: 'Share',
       redo: 'Try again',
+      note: 'Please enter your first, middle and last name',
     },
   },
   ar: {
@@ -21,6 +22,7 @@ export const messages = {
       download: 'تحميل',
       share: 'مشاركة',
       redo: 'اعادة مره اخرى',
+      note: 'الرجاء كتابة اسمك الثلاثي',
     },
   },
 };
