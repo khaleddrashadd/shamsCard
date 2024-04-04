@@ -7,6 +7,7 @@
   </button>
   <button
     @click="handleShare"
+    @touchstart="handleShare"
     class="share"
     type="button">
     {{ t('message.share') }}
