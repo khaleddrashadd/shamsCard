@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'DIN';
+  src: url('./assets/fonts/DIN-Regular.woff') format('woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'DIN';
+  src: url('./assets/fonts/DIN-Bold.woff') format('woff');
+  font-weight: 700;
+}
+
+
+
 html {
   box-sizing: border-box;
 }
@@ -6,17 +19,16 @@ ul {
   list-style: none;
 }
 
-
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Almarai', sans-serif;
+  font-family: 'DIN', sans-serif;
   line-height: 1;
   box-sizing: border-box;
 }
 
 button {
-  font-family: 'Almarai', sans-serif;
+  font-family: 'DIN', sans-serif;
 }
 
 .d-none {
@@ -87,7 +99,7 @@ canvas {
   .hide-mob {
     display: nonse;
   }
-  
+
   .show-mob {
     display: flex;
     justify-content: center;
@@ -96,8 +108,7 @@ canvas {
   }
 }
 
-.show-mob .receiver-wrapper{
+.show-mob .receiver-wrapper {
   max-width: 151px;
   /* right: 28%; */
 }
-

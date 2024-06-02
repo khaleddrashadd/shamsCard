@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
+    "qrcode.vue": "^3.4.1",
     "vue": "^3.4.21",
-    "vue-i18n": "^9.10.2"
+    "vue-i18n": "^9.10.2",
+    "vue-upload-drop-images": "^1.0.7"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

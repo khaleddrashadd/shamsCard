@@ -56,7 +56,7 @@ const handleShare = async () => {
   const blob = dataURItoBlob(imageData);
   // Create a File instance from the Blob
   const filesArray = [
-    new File([blob], "Eid-Mubarak.jpg", { type: "image/jpeg" }),
+    new File([blob], "Shams.jpg", { type: "image/jpeg" }),
   ];
   if (!navigator.share && !navigator.canShare({ files: filesArray })) {
     alert("Your browser does not support this feature");
@@ -83,7 +83,7 @@ const handleDownload = () => {
       a.href = canvas
         .toDataURL("image/png")
         .replace("image/png", "image/octet-stream");
-      a.download = "Eid-Mubarak.png";
+      a.download = "Shams.png";
       a.click();
     });
   } else {
@@ -93,7 +93,7 @@ const handleDownload = () => {
       a.href = canvas
         .toDataURL("image/png", 0.25)
         .replace("image/png", "image/octet-stream");
-      a.download = "Eid-Mubarak.png";
+      a.download = "Shams.png";
       a.click();
       a.remove();
     });

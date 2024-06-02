@@ -9,12 +9,22 @@
         @lang-change="handleChangeLang" /> -->
       <TheForm
         @nameEnter="getName"
+        @imageEnter="getImg"
+        @positionEnter="getPosition"
+        @phoneEnter="getPhone"
+        @mailEnter="getMail"
+        @createQR="createQR"
         :language="langEl"
-        :wrapperElement />
+        :wrapperElement="wrapperElement" />
       <TheCard
         @getWrapperElement="getWrapperElement"
         @lang-change="handleChangeLang"
         :personName="personName"
+        :personImg="personImg"
+        :personPosition="personPosition"
+        :personPhone="personPhone"
+        :personMail="personMail"
+        :qrData="qrData"
         :language="langEl" />
     </div>
   </section>
@@ -39,9 +49,48 @@
   locale.value = language;
 
   const personName = ref('');
+  const personImg = ref('');
+  const personPosition = ref('');
+  const personPhone = ref('');
+  const personMail = ref('');
+  const qrData = ref('');
+
   const wrapperElement = ref(null);
   const getName = (name) => {
     personName.value = name;
+  };
+
+  const getImg = (img) => {
+    if (!img) {
+      return (personImg.value = '');
+    }
+    const imgSrc = URL.createObjectURL(img);
+    personImg.value = imgSrc;
+  };
+
+  const getPosition = (pos) => {
+    personPosition.value = pos;
+  };
+  const getPhone = (phone) => {
+    personPhone.value = phone;
+  };
+  const getMail = (mail) => {
+    personMail.value = mail;
+  };
+
+  const createQR = (contact) => {
+    if (!contact) return (qrData.value = '');
+
+    const { name, phoneNumber, email } = contact;
+    const vCardData = `BEGIN:VCARD
+VERSION:4.0
+N:${name};;;
+FN:${name}
+TEL;TYPE=CELL:${phoneNumber}
+EMAIL;TYPE=WORK,INTERNET:${email}
+END:VCARD`;
+
+    qrData.value = vCardData;
   };
 
   const handleChangeLang = () => {
