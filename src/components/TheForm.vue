@@ -189,21 +189,6 @@
     emit('mailEnter', newVal);
   });
 
-  const generateVCard = (contact) => {
-    
-    const { name, phoneNumber, email, position } = contact;
-    const vCardData = `BEGIN:VCARD
-                      VERSION:4.0
-                      N:${name};;;
-                      FN:${name}
-                      TITLE:${position}
-                      TEL;TYPE=CELL:${phoneNumber}
-                      EMAIL;TYPE=WORK,INTERNET:${email}
-                      END:VCARD`;
-
-                      return vCardData;
-  };
-
   const handleCreateName = () => {
     startValidate.value = true;
 
@@ -224,7 +209,6 @@
         phoneNumber: phoneInput.value,
         email: emailInput.value,
         position: positionInput.value,
-        // photo: photoInput.value,
       };
       emit('createQR', contact);
     }

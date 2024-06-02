@@ -81,11 +81,12 @@
   const createQR = (contact) => {
     if (!contact) return (qrData.value = '');
 
-    const { name, phoneNumber, email } = contact;
+    const { name, phoneNumber, email,position } = contact;
     const vCardData = `BEGIN:VCARD
 VERSION:4.0
 N:${name};;;
 FN:${name}
+TITLE:${position}
 TEL;TYPE=CELL:${phoneNumber}
 EMAIL;TYPE=WORK,INTERNET:${email}
 END:VCARD`;
