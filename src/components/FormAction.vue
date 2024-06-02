@@ -87,11 +87,13 @@ const handleDownload = () => {
       a.click();
     });
   } else {
-    html2canvas(element).then((canvas) => {
+    html2canvas(element,{
+      quality: 1,
+    }).then((canvas) => {
       document.body.appendChild(canvas);
       const a = document.createElement("a");
       a.href = canvas
-        .toDataURL("image/png", 0.25)
+        .toDataURL("image/png")
         .replace("image/png", "image/octet-stream");
       a.download = "Shams.png";
       a.click();

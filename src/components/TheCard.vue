@@ -32,7 +32,8 @@
         v-if="qrData">
         <qrcode-vue
           :value="qrData"
-          level="M"
+          level="L"
+
           :render-as="renderAs" />
       </div>
     </div>
@@ -178,5 +179,10 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: white;
+    width: 105px;
+    height: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
