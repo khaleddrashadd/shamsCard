@@ -1,163 +1,30 @@
 <template>
-  <div
-    class="card-wrapper-left"
-    >
-    <div ref="cardRef"
-      class="hide-mob"
-     >
+  <div class="card-wrapper-left">
+    <div
+      ref="cardRef"
+      class="hide-mob">
       <img
         :src="imgSrc"
         alt="Shams-Eids" />
-      <div
-        class="receiver-wrapper"
-        :style="{ bottom: imgTop }">
-        <p
-          class="receiver-name"
-          :class="{ 'light-text': isLight }">
+      <div class="receiver-wrapper">
+        <p class="receiver-name">
           {{ personName }}
         </p>
-      </div>
-    </div>
-
-    <div class="gallery-wrapper">
-      <div
-        @click="handleChangeSrc(src)"
-        class="gallery-item"
-        v-for="(src, index) in gallery"
-        :key="index">
-        <img
-          :src
-          alt="" />
       </div>
     </div>
   </div>
 </template>
 <script setup>
-  import { ref, onMounted, watch } from 'vue';
-  import {
-    img_1,
-    img_2,
-    img_3,
-    img_4,
-    img_5,
-    img_en_1,
-    img_en_2,
-    img_en_3,
-    img_en_4,
-    img_en_5,
-  } from '../assets/images';
-  import { watchEffect } from 'vue';
+  import { ref, onMounted } from 'vue';
+  import imgSrc from '../assets/images/shams-card.svg';
 
   const props = defineProps(['personName', 'language']);
   const emit = defineEmits(['langChange', 'getWrapperElement']);
 
   const cardRef = ref(null);
-  const isLight = ref(false);
-  const imgTop = ref(props.language === 'ar' ? '21.5%' : '20.5%');
-  const imgRight = ref('30%');
 
   onMounted(() => {
     emit('getWrapperElement', cardRef.value);
-  });
-
-  const imgsMap = {
-    0: {
-      ar: {
-        src: img_1,
-        right: '30%',
-        top: '21.5%',
-      },
-      en: {
-        src: img_en_1,
-        right: '30%',
-        top: '20.5%',
-      },
-      dark: false,
-    },
-    1: {
-      ar: {
-        src: img_2,
-        right: '30%',
-        top: '18%',
-      },
-      en: {
-        src: img_en_2,
-        right: '30%',
-        top: '17%',
-      },
-      dark: true,
-    },
-    2: {
-      ar: {
-        src: img_3,
-        right: '30%',
-        top: '27%',
-      },
-      en: {
-        src: img_en_3,
-        right: '30%',
-        top: '25%',
-      },
-      dark: false,
-    },
-    3: {
-      ar: {
-        src: img_4,
-        right: '30%',
-        top: '9.5%',
-      },
-      en: {
-        src: img_en_4,
-        right: '30%',
-        top: '10%',
-      },
-      dark: true,
-    },
-    4: {
-      ar: {
-        src: img_5,
-        right: '30%',
-        top: '13.5%',
-      },
-      en: {
-        src: img_en_5,
-        right: '30%',
-        top: '10%',
-      },
-      dark: false,
-    },
-  };
-
-  const gallery = ref(
-    Object.values(imgsMap).map((item) => item[props.language].src)
-  );
-
-  watch(
-    () => props.language,
-    (newVal) => {
-      gallery.value = Object.values(imgsMap).map((item) => item[newVal].src);
-      imgTop.value = newVal === 'ar' ? '20.5%' : '19.5%';
-      isLight.value = false;
-    }
-  );
-
-  const imgSrc = ref(imgsMap[0].ar.src);
-  const imgIndex = ref(0);
-  const imgsArr = Object.values(imgsMap);
-
-  const handleChangeSrc = (src) => {
-    imgSrc.value = src;
-    const index = Object.keys(imgsMap).find(
-      (key) => imgsMap[key][props.language].src === src
-    );
-    isLight.value = imgsMap[index].dark;
-
-    imgTop.value = imgsMap[index][props.language].top;
-    imgRight.value = imgsMap[index][props.language].right;
-  };
-
-  watchEffect(() => {
-    imgSrc.value = imgsArr[imgIndex.value][props.language].src;
   });
 </script>
 <style scoped>
@@ -169,9 +36,9 @@
   }
 
   .card-wrapper-left img {
-    max-width: 100%;
+    /*max-width: 100%;*/
     height: 100%;
-    max-width: 500px;
+    width: 500px;
     /* width: 500px; */
   }
 
@@ -210,13 +77,11 @@
     }
   }
 
-    @media screen and (max-width: 991px){
-    .gallery-wrapper{
+  @media screen and (max-width: 991px) {
+    .gallery-wrapper {
       order: -1;
     }
   }
-
-
 
   .gallery-item {
     width: 100px;
