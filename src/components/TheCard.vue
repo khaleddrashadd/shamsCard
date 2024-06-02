@@ -21,6 +21,9 @@
       <div class="receiver-phone receiver-data">
         <p>{{ personPhone }}</p>
       </div>
+      <div class="receiver-website receiver-data">
+        <p>{{ websiteUrl }}</p>
+      </div>
       <div class="profile-img-container">
         <img
           :src="personImg || placeHolderImg"
@@ -59,6 +62,8 @@
 
   const cardRef = ref(null);
   const renderAs = ref('svg');
+
+  const websiteUrl = 'shams.gov.sa';
 
   onMounted(() => {
     emit('getWrapperElement', cardRef.value);
@@ -171,6 +176,10 @@
   .receiver-phone {
     left: 38%;
     transform: translateY(-66px);
+  }
+  .receiver-website {
+    left: 38%;
+    bottom: 40%;
   }
 
   .qr-container {
