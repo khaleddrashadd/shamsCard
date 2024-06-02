@@ -38,10 +38,11 @@
 
   const { locale } = useI18n();
 
-  const language =
-    localStorage.getItem('lang') ||
-    window?.navigator?.language.toLocaleLowerCase().slice(0, 2) ||
-    'ar';
+  // const language =
+  //   localStorage.getItem('lang') ||
+  //   window?.navigator?.language.toLocaleLowerCase().slice(0, 2) ||
+  //   'ar';
+  const language = 'ar';
 
   const dirEl = ref(language === 'ar' ? 'rtl' : 'ltr');
   const langEl = ref(language);
@@ -81,7 +82,7 @@
   const createQR = (contact) => {
     if (!contact) return (qrData.value = '');
 
-    const { name, phoneNumber, email,position } = contact;
+    const { name, phoneNumber, email, position } = contact;
     const vCardData = `BEGIN:VCARD
 VERSION:4.0
 N:${name};;;
