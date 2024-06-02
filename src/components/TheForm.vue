@@ -2,20 +2,108 @@
   <div class="card-wrapper-right">
     <div class="card-wrapper-right-container">
       <img class="logo" :src="logoSrc" alt="shams-logo" />
-      <p>{{ t('message.cardMessage') }}</p>
+      <p>{{ t("message.cardMessage") }}</p>
       <form>
         <div class="name-input">
-          <label v-if="!isCreated" for="name">{{ t('message.enterName') }}</label>
-          <input v-if="!isCreated" maxlength="30" class="input-name"
-            :class="{ 'red-border': !isNameValid && startValidate }" type="text" :placeholder="t('message.name')"
-            @input="() => (isNameValid = !!nameInput.trim())" v-model.trim="nameInput" />
-            <p class="small">
-              <img src="/src/assets/images/warning.png" alt="">
-              {{ t('message.note') }}</p>
-          <label class="alert" v-if="!isNameValid && startValidate">{{ t('message.nameValidation') }}</label>
-          <FormAction :wrapperElement="wrapperElement" v-if="isCreated" @reCreate="reCreate" @reset="handleReset" />
-          <button v-if="!isCreated" @click="handleCreateName" type="button" class="name-input-submit">
-            {{ t('message.create') }}
+          <label v-if="!isCreated" for="photo">{{
+            t("message.enterPhoto")
+          }}</label>
+          <input
+            v-if="!isCreated"
+            class="input-name"
+            :class="{ 'red-border': !isPhotoValid && startValidate }"
+            type="file"
+            accept="image/*"
+            @change="validatePhoto"
+          />
+          <label class="alert" v-if="!isPhotoValid && startValidate">{{
+            t("message.photoValidation")
+          }}</label>
+
+
+          <label v-if="!isCreated" for="name">{{
+            t("message.enterName")
+          }}</label>
+          <input
+            v-if="!isCreated"
+            maxlength="30"
+            class="input-name"
+            :class="{ 'red-border': !isNameValid && startValidate }"
+            type="text"
+            :placeholder="t('message.name')"
+            @input="() => (isNameValid = !!nameInput.trim())"
+            v-model.trim="nameInput"
+          />
+          <label class="alert" v-if="!isNameValid && startValidate">{{
+            t("message.nameValidation")
+          }}</label>
+
+          <label v-if="!isCreated" for="position">{{
+            t("message.enterPosition")
+          }}</label>
+          <input
+            v-if="!isCreated"
+            maxlength="30"
+            class="input-name"
+            :class="{ 'red-border': !isPositionValid && startValidate }"
+            type="text"
+            :placeholder="t('message.position')"
+            @input="() => (isPositionValid = !!positionInput.trim())"
+            v-model.trim="positionInput"
+          />
+          <label class="alert" v-if="!isPositionValid && startValidate">{{
+            t("message.positionValidation")
+          }}</label>
+
+          <label v-if="!isCreated" for="phone">{{
+            t("message.enterPhone")
+          }}</label>
+          <input
+            v-if="!isCreated"
+            maxlength="15"
+            class="input-name"
+            :class="{ 'red-border': !isPhoneValid && startValidate }"
+            type="text"
+            :placeholder="t('message.phone')"
+            @input="() => (isPhoneValid = !!phoneInput.trim())"
+            v-model.trim="phoneInput"
+          />
+          <label class="alert" v-if="!isPhoneValid && startValidate">{{
+            t("message.phoneValidation")
+          }}</label>
+
+          <label v-if="!isCreated" for="email">{{
+            t("message.enterEmail")
+          }}</label>
+          <input
+            v-if="!isCreated"
+            maxlength="50"
+            class="input-name"
+            :class="{ 'red-border': !isEmailValid && startValidate }"
+            type="email"
+            :placeholder="t('message.email')"
+            @input="() => (isEmailValid = !!emailInput.trim())"
+            v-model.trim="emailInput"
+          />
+          <label class="alert" v-if="!isEmailValid && startValidate">{{
+            t("message.emailsValidation")
+          }}</label>
+
+          
+
+          <FormAction
+            :wrapperElement="wrapperElement"
+            v-if="isCreated"
+            @reCreate="reCreate"
+            @reset="handleReset"
+          />
+          <button
+            v-if="!isCreated"
+            @click="handleCreateName"
+            type="button"
+            class="name-input-submit"
+          >
+            {{ t("message.create") }}
           </button>
         </div>
       </form>
@@ -23,49 +111,64 @@
   </div>
 </template>
 <script setup>
-import { ref, watch } from 'vue';
-import FormAction from './FormAction.vue';
-import { useI18n } from 'vue-i18n';
+import { ref, watch } from "vue";
+import FormAction from "./FormAction.vue";
+import { useI18n } from "vue-i18n";
 
-import { shamsLogo, shamsLogoEn } from '../assets/images';
-const props = defineProps(['wrapperElement', 'language']);
+import { shamsLogo, shamsLogoEn } from "../assets/images";
+const props = defineProps(["wrapperElement", "language"]);
 
 const logoSrc = ref(shamsLogo);
 
 watch(
   () => props.language,
   (newVal) => {
-    logoSrc.value = newVal === 'ar' ? shamsLogo : shamsLogoEn;
+    logoSrc.value = newVal === "ar" ? shamsLogo : shamsLogoEn;
   }
 );
 
 const { t } = useI18n();
 
-const nameInput = ref('');
+const nameInput = ref("");
+const positionInput = ref("");
+const phoneInput  = ref("");
+const emailInput  = ref("");
+const photoInput   = ref(null);
 const isCreated = ref(false);
+
 const isNameValid = ref(false);
+const isPhotoValid = ref(false);
+const isPositionValid = ref(false);
+const isPhoneValid = ref(false);
+const isEmailValid = ref(false);
 const startValidate = ref(false);
 
 const reCreate = () => {
   isCreated.value = false;
-  nameInput.value = '';
+  nameInput.value = "";
 };
-const emit = defineEmits(['nameEnter']);
+const emit = defineEmits(["nameEnter"]);
 watch(nameInput, (newVal) => {
-  emit('nameEnter', newVal);
+  emit("nameEnter", newVal);
 });
 
 const handleCreateName = () => {
   startValidate.value = true;
-  if (!isNameValid.value || !nameInput.value) {
-    return;
+
+  isNameValid.value = !!nameInput.trim();
+  isPositionValid.value = !!positionInput.trim();
+  isPhoneValid.value = !!phoneInput.trim();
+  isEmailValid.value = !!emailInput.trim();
+  isPhotoValid.value = !!photoInput;
+
+  if (isNameValid.value && isPositionValid.value && isPhoneValid.value && isEmailValid.value && isPhotoValid.value) {
+    isCreated.value = true;
   }
-  isCreated.value = true;
-};
+}
 
 const handleReset = () => {
   isCreated.value = false;
-  nameInput.value = '';
+  nameInput.value = "";
   startValidate.value = false;
   isNameValid.value = false;
 };
@@ -129,7 +232,7 @@ watch(nameInput, (newVal) => {
   padding-right: 10px;
   padding-left: 10px;
   margin-bottom: 16px;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   outline: none;
 }
 
@@ -163,23 +266,22 @@ watch(nameInput, (newVal) => {
   padding: 12px 0;
 }
 
-.small{
+.small {
   display: flex;
   flex-direction: row;
   gap: 8px;
   font-size: 14px !important;
   margin: 0;
-  color: #FFC048 !important;
+  color: #ffc048 !important;
   margin-bottom: 16px !important;
   font-weight: 500 !important;
-  
 }
-.small img{
-    margin: 0; 
-    padding-bottom: 8px !important;
-    width: 16px;
-    height: 16px;
-  }
+.small img {
+  margin: 0;
+  padding-bottom: 8px !important;
+  width: 16px;
+  height: 16px;
+}
 
 .logo {
   width: 60%;

@@ -2,7 +2,9 @@ export const messages = {
   en: {
     message: {
       enterName: 'Enter your name',
+      enterPosition: 'Enter your position',
       name: 'Name',
+      position: 'Position',
       create: 'Create',
       nameValidation: 'Please enter your name',
       cardMessage: 'A greeting card with your name',
@@ -15,9 +17,21 @@ export const messages = {
   ar: {
     message: {
       enterName: 'ادخل اسمك',
-      name: 'الاسم',
-      create: 'انشاء',
       nameValidation: 'الرجاء ادخال الاسم',
+      enterPosition: 'ادخل منصبك',
+      positionValidation: 'الرجاء ادخال منصبك',
+      enterPhone: 'ادخل رقم جوالك',
+      phoneValidation: 'الرجاء ادخال رقم جوالك',
+      enterEmail: 'ادخل بريدك الالكتروني',
+      emailsValidation: 'الرجاء ادخال بريدك الالكتروني',
+      enterPhoto: 'ارفق صورتك الشخصية',
+      photoValidation: 'الرجاء ارفاق صورتك الشخصية',
+      name: 'الاسم',
+      position: 'المنصب',
+      phone: 'رقم الجوال',
+      email: 'البريد الالكتروني',
+      photo: 'الصورة الشخصية',
+      create: 'انشاء',
       cardMessage: 'بطاقة تهنئة بإسمك',
       download: 'تحميل',
       share: 'مشاركة',
