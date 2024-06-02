@@ -179,10 +179,6 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: white;
-    width: 105px;
-    height: 105px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 2px solid white;
   }
 </style>
