@@ -27,7 +27,7 @@
         />
       </div>
       <div class="qr-container" v-if="qrData">
-        <qrcode-vue :value="qrData" level="L" :render-as="renderAs" size="30"/>
+        <qrcode-vue :value="qrData" level="L" :render-as="renderAs" size="150"/>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@ import QrcodeVue from "qrcode.vue";
 
 import { ref, onMounted } from "vue";
 import imgSrc from "../assets/images/shams-card.jpg";
-import placeHolderImg from "../assets/images/placeholder.jpg";
+import placeHolderImg from "../assets/images/placeholder.png";
 
 const props = defineProps([
   "personName",
@@ -194,13 +194,13 @@ onMounted(() => {
     height: 60px;
   }
   .receiver-data {
-    font-size: 10px;
+    font-size: 16px;
   }
   .receiver-name {
-    font-size: 10px;
+    font-size: 16px;
   }
   .receiver-position {
-    font-size: 10px;
+    font-size: 16px;
     margin-top: 10px;
   }
   .receiver-phone {
