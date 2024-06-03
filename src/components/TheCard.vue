@@ -1,5 +1,5 @@
 <template>
-  <div class="card-wrapper-left">
+  <div :class="['card-wrapper-left', deviceTypeClass]">
     <div ref="cardRef" class="hide-mob" id="el">
       <img :src="imgSrc" alt="Shams-Eids" class="card-img" />
       <div class="receiver-wrapper">
@@ -27,15 +27,15 @@
         />
       </div>
       <div class="qr-container" v-if="qrData">
-        <qrcode-vue :value="qrData" level="L" :render-as="renderAs"  size="150"/>
+        <qrcode-vue :value="qrData" level="L" :render-as="renderAs" size="150"/>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
 import QrcodeVue from "qrcode.vue";
-
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import imgSrc from "../assets/images/shams-card.jpg";
 import placeHolderImg from "../assets/images/placeholder.svg";
 
@@ -58,7 +58,23 @@ const websiteUrl = "shams.gov.sa";
 onMounted(() => {
   emit("getWrapperElement", cardRef.value);
 });
+
+const deviceType = computed(() => {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if (/android/i.test(userAgent)) {
+    return 'android';
+  }
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return 'ios';
+  }
+  return 'other';
+});
+
+const deviceTypeClass = computed(() => {
+  return deviceType.value === 'android' ? 'android-style' : deviceType.value === 'ios' ? 'ios-style' : '';
+});
 </script>
+
 <style scoped>
 .card-wrapper-left {
   display: flex;
@@ -68,10 +84,8 @@ onMounted(() => {
 }
 
 .card-wrapper-left .card-img {
-  /*max-width: 100%;*/
   height: 100%;
   width: 500px;
-  /* width: 500px; */
 }
 
 .receiver-wrapper {
@@ -94,64 +108,29 @@ onMounted(() => {
 .receiver-position {
   margin-top: 16px;
 }
-.gallery-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-  flex-direction: column;
-}
+
 @media (max-width: 1157px) {
-  .gallery-wrapper {
-    flex-direction: row;
-  }
   .card-wrapper-left {
     flex-direction: column;
   }
 }
-
-@media screen and (max-width: 991px) {
-  .gallery-wrapper {
-    order: -1;
-  }
-}
-
-.gallery-item {
-  width: 100px;
-  aspect-ratio: 1/1;
-  border-radius: 24px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.gallery-item > img {
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
-  object-fit: cover;
-}
-
-.light-text {
-  color: #fff;
-}
-
 .profile-img-container {
   position: absolute;
   top: 13%;
   left: 50%;
   transform: translateX(-50%);
-}
-
-.profile-img {
+  overflow: hidden;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  object-fit: cover;
-  object-position: top;
   border: 3px solid rgb(161, 6, 6);
-  padding: 4px;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .receiver-data {
@@ -188,10 +167,7 @@ onMounted(() => {
     height: 100%;
     width: 100%;
   }
-  .profile-img {
-    width: 60px;
-    height: 60px;
-  }
+  
   .receiver-data {
     font-size: 16px;
   }
@@ -211,5 +187,17 @@ onMounted(() => {
   .qr-container {
       bottom: 7%;
   }
+}
+
+/* Styles for Android */
+.android-style {
+  background-color: #f0f0f0;
+  /* Add more styles specific to Android */
+}
+
+/* Styles for iOS */
+.ios-style {
+  background-color: #e0e0e0;
+  /* Add more styles specific to iOS */
 }
 </style>
