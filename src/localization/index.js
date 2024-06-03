@@ -17,7 +17,7 @@ export const messages = {
       enterPhoto: 'Attach your photo',
       photoValidation: 'Please attach your photo',
     
-      cardMessage: 'A greeting card with your name',
+      cardMessage: 'Business card',
       download: 'Download',
       share: 'Share',
       redo: 'Try again',
@@ -42,7 +42,7 @@ export const messages = {
       email: 'البريد الالكتروني',
       photo: 'الصورة الشخصية',
       create: 'انشاء',
-      cardMessage: 'بطاقة تهنئة بإسمك',
+      cardMessage: 'بطاقة عمل',
       download: 'تحميل',
       share: 'مشاركة',
       redo: 'اعادة مره اخرى',

@@ -1,12 +1,7 @@
 <template>
-  <div class="card-wrapper-left">
-    <div
-      ref="cardRef"
-      class="hide-mob">
-      <img
-        :src="imgSrc"
-        alt="Shams-Eids"
-        class="card-img" />
+  <div :class="['card-wrapper-left', deviceTypeClass]">
+    <div ref="cardRef" class="hide-mob" id="el">
+      <img :src="imgSrc" alt="Shams-Eids" class="card-img" />
       <div class="receiver-wrapper">
         <p class="receiver-name">
           {{ personName }}
@@ -21,164 +16,188 @@
       <div class="receiver-phone receiver-data">
         <p>{{ personPhone }}</p>
       </div>
+      <div class="receiver-website receiver-data">
+        <p>{{ websiteUrl }}</p>
+      </div>
       <div class="profile-img-container">
         <img
           :src="personImg || placeHolderImg"
           alt="person image"
-          class="profile-img" />
+          class="profile-img"
+        />
       </div>
-      <div
-        class="qr-container"
-        v-if="qrData">
-        <qrcode-vue
-          :value="qrData"
-          level="L"
-
-          :render-as="renderAs" />
+      <div class="qr-container" v-if="qrData">
+        <qrcode-vue :value="qrData" level="L" :render-as="renderAs" size="150"/>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
-  import QrcodeVue from 'qrcode.vue';
+import QrcodeVue from "qrcode.vue";
+import { ref, computed, onMounted } from "vue";
+import imgSrc from "../assets/images/shams-card.jpg";
+import placeHolderImg from "../assets/images/placeholder.png";
 
-  import { ref, onMounted } from 'vue';
-  import imgSrc from '../assets/images/shams-card.svg';
-  import placeHolderImg from '../assets/images/placeholder.svg';
+const props = defineProps([
+  "personName",
+  "language",
+  "personImg",
+  "personPosition",
+  "personMail",
+  "personPhone",
+  "qrData",
+]);
+const emit = defineEmits(["langChange", "getWrapperElement"]);
 
-  const props = defineProps([
-    'personName',
-    'language',
-    'personImg',
-    'personPosition',
-    'personMail',
-    'personPhone',
-    'qrData',
-  ]);
-  const emit = defineEmits(['langChange', 'getWrapperElement']);
+const cardRef = ref(null);
+const renderAs = ref("svg");
 
-  const cardRef = ref(null);
-  const renderAs = ref('svg');
+const websiteUrl = "shams.gov.sa";
 
-  onMounted(() => {
-    emit('getWrapperElement', cardRef.value);
-  });
+onMounted(() => {
+  emit("getWrapperElement", cardRef.value);
+});
+
+const deviceType = computed(() => {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if (/android/i.test(userAgent)) {
+    return 'android';
+  }
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return 'ios';
+  }
+  return 'other';
+});
+
+const deviceTypeClass = computed(() => {
+  return deviceType.value === 'android' ? 'android-style' : deviceType.value === 'ios' ? 'ios-style' : '';
+});
 </script>
+
 <style scoped>
+.card-wrapper-left {
+  display: flex;
+  gap: 48px;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.card-wrapper-left .card-img {
+  height: 100%;
+  width: 500px;
+}
+
+.receiver-wrapper {
+  position: absolute;
+  top: 27%;
+}
+
+.receiver-name,
+.receiver-position {
+  font-weight: 400;
+  font-size: 28px;
+  color: white;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  white-space: wrap;
+  display: inline-block;
+}
+
+.receiver-position {
+  margin-top: 16px;
+}
+
+@media (max-width: 1157px) {
   .card-wrapper-left {
-    display: flex;
-    gap: 48px;
-    flex: 0 0 auto;
-    position: relative;
-  }
-
-  .card-wrapper-left .card-img {
-    /*max-width: 100%;*/
-    height: 100%;
-    width: 500px;
-    /* width: 500px; */
-  }
-
-  .receiver-wrapper {
-    position: absolute;
-    top: 27%;
-  }
-
-  .receiver-name,
-  .receiver-position {
-    font-weight: 400;
-    font-size: 28px;
-    color: white;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-    white-space: wrap;
-    display: inline-block;
-  }
-
-  .receiver-position {
-    margin-top: 38px;
-  }
-  .gallery-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
     flex-direction: column;
   }
-  @media (max-width: 1157px) {
-    .gallery-wrapper {
-      flex-direction: row;
-    }
-    .card-wrapper-left {
-      flex-direction: column;
-    }
-  }
+}
+.profile-img-container {
+  position: absolute;
+  top: 13%;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid rgb(161, 6, 6);
+}
 
-  @media screen and (max-width: 991px) {
-    .gallery-wrapper {
-      order: -1;
-    }
-  }
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
 
-  .gallery-item {
-    width: 100px;
-    aspect-ratio: 1/1;
-    border-radius: 24px;
-    overflow: hidden;
-    cursor: pointer;
-  }
+.receiver-data {
+  position: absolute;
+  color: white;
+  font-size: 21px;
+}
+.receiver-mail {
+  left: 25%;
+  transform: translateY(-4px);
+}
+.receiver-phone {
+  left: 25%;
+  transform: translateY(-66px);
+  direction: ltr;
+}
+.receiver-website {
+  left: 25%;
+  bottom: 40%;
+}
 
-  .gallery-item > img {
-    width: 100%;
+.qr-container {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 2px solid white;
+}
+
+
+@media (max-width: 600px) {
+  .card-wrapper-left .card-img {
     height: 100%;
-    border-radius: 24px;
-    object-fit: cover;
+    width: 100%;
   }
-
-  .light-text {
-    color: #fff;
-  }
-
-  .profile-img-container {
-    position: absolute;
-    top: 13%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .profile-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: top;
-    border: 3px solid rgb(161, 6, 6);
-    padding: 4px;
-  }
-
+  
   .receiver-data {
-    position: absolute;
-    color: white;
-    font-size: 21px;
+    font-size: 16px;
   }
-  .receiver-mail {
-    left: 38%;
-    transform: translateY(-4px);
+  .receiver-name {
+    font-size: 16px;
+  }
+  .receiver-position {
+    font-size: 16px;
+    margin-top: 10px;
   }
   .receiver-phone {
-    left: 38%;
-    transform: translateY(-66px);
+    transform: translateY(-41px);
   }
-
+  .receiver-website {
+    bottom: 39%;
+  }
   .qr-container {
-    position: absolute;
-    bottom: 23%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: white;
-    border: 2px solid white;
+      bottom: 7%;
   }
+}
+
+/* Styles for Android */
+.android-style {
+  background-color: #f0f0f0;
+  /* Add more styles specific to Android */
+}
+
+/* Styles for iOS */
+.ios-style {
+  background-color: #e0e0e0;
+  /* Add more styles specific to iOS */
+}
 </style>
