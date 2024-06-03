@@ -142,6 +142,7 @@ onMounted(() => {
   top: 13%;
   left: 50%;
   transform: translateX(-50%);
+  overflow: hidden;
 }
 
 .profile-img {
@@ -149,7 +150,7 @@ onMounted(() => {
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: top;
+  object-position: center top;
   border: 3px solid rgb(161, 6, 6);
   padding: 4px;
 }

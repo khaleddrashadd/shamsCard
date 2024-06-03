@@ -9,8 +9,6 @@
   font-weight: 700;
 }
 
-
-
 html {
   box-sizing: border-box;
 }
@@ -54,6 +52,7 @@ canvas {
     bottom: 24.5%;
     transform: none;
     max-width: 150px;
+    height: fit-content;
   }
 
   .receiver-name {
@@ -98,7 +97,7 @@ canvas {
 @media (max-width: 767px) {
   .hide-mob {
     /* display: none; */
-    img{
+    img {
       width: 300px;
     }
   }
