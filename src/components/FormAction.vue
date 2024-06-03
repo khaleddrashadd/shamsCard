@@ -77,6 +77,8 @@ const handleShare = async () => {
 };
 
 const handleDownload = () => {
+    const element = document.getElementById("el");
+
   element.classList.add("scale");
   if (screen.width < 767) {
     html2canvas(element).then((canvas) => {
