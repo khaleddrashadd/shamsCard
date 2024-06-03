@@ -97,9 +97,11 @@ canvas {
 
 @media (max-width: 767px) {
   .hide-mob {
-    display: nonse;
+    /* display: none; */
+    img{
+      width: 300px;
+    }
   }
-
   .show-mob {
     display: flex;
     justify-content: center;
