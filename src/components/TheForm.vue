@@ -284,7 +284,7 @@
     padding-right: 10px;
     padding-left: 10px;
     margin-bottom: 16px;
-    font-family: 'DIN', sans-serif;
+    font-family: "Cairo", sans-serif;
     outline: none;
   }
   .name-input .input-file {
@@ -294,7 +294,7 @@
     padding-right: 10px;
     padding: 8px 10px;
     margin-bottom: 16px;
-    font-family: 'DIN', sans-serif;
+    font-family: "Cairo", sans-serif;
     outline: none;
   }
 
