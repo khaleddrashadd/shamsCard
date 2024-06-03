@@ -94,65 +94,29 @@ onMounted(() => {
 .receiver-position {
   margin-top: 16px;
 }
-.gallery-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-  flex-direction: column;
-}
+
 @media (max-width: 1157px) {
-  .gallery-wrapper {
-    flex-direction: row;
-  }
   .card-wrapper-left {
     flex-direction: column;
   }
 }
-
-@media screen and (max-width: 991px) {
-  .gallery-wrapper {
-    order: -1;
-  }
-}
-
-.gallery-item {
-  width: 100px;
-  aspect-ratio: 1/1;
-  border-radius: 24px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.gallery-item > img {
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
-  object-fit: cover;
-}
-
-.light-text {
-  color: #fff;
-}
-
 .profile-img-container {
   position: absolute;
   top: 13%;
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
-}
-
-.profile-img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  object-fit: cover;
-  object-position: center top;
   border: 3px solid rgb(161, 6, 6);
-  padding: 4px;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .receiver-data {
