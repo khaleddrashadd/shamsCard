@@ -103,7 +103,7 @@ onMounted(() => {
 .profile-img-container {
   position: absolute;
   top: 13%;
-  left: 40%;
+  left: 39%;
   overflow: hidden;
   width: 100px;
   height: 100px;
@@ -112,8 +112,8 @@ onMounted(() => {
 }
 
 .profile-img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -150,6 +150,10 @@ onMounted(() => {
   .card-wrapper-left .card-img {
     height: 100%;
     width: 100%;
+  }
+  .profile-img-container{
+    width: 60px;
+    height: 60px;
   }
   
   .receiver-data {
