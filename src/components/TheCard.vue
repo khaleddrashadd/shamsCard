@@ -1,6 +1,6 @@
 <template>
   <div class="card-wrapper-left">
-    <div ref="cardRef" class="hide-mob">
+    <div ref="cardRef" class="hide-mob" id="el">
       <img :src="imgSrc" alt="Shams-Eids" class="card-img" />
       <div class="receiver-wrapper">
         <p class="receiver-name">

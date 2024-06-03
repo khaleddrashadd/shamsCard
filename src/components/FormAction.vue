@@ -28,11 +28,11 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineProps(["wrapperElement"]);
+// const props = defineProps(["wrapperElement"]);
 
 const { t } = useI18n();
 
-const element = props.wrapperElement;
+// const element = props.wrapperElement;
 
 // Helper function to convert data URL to Blob
 function dataURItoBlob(dataURI) {
@@ -47,6 +47,8 @@ function dataURItoBlob(dataURI) {
 }
 
 const handleShare = async () => {
+  const element = document.getElementById("el");
+  console.log(element)
   element.classList.add("scale");
   const canvas = await html2canvas(element);
   document.body.appendChild(canvas);
