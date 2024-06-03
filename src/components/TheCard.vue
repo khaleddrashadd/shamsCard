@@ -37,7 +37,7 @@
 import QrcodeVue from "qrcode.vue";
 import { ref, computed, onMounted } from "vue";
 import imgSrc from "../assets/images/shams-card.jpg";
-import placeHolderImg from "../assets/images/placeholder.svg";
+import placeHolderImg from "../assets/images/placeholder.png";
 
 const props = defineProps([
   "personName",

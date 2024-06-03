@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 <svg width="174" height="198" viewBox="0 0 174 198" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_204_514)">
 <rect width="174" height="198" fill="#061B2F"/>
 <mask id="mask0_204_514" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="174" height="198">
 <path d="M174 0H0V198H174V0Z" fill="white"/>
+=======
+<svg width="100" height="100" viewBox="0 0 174 198" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_174_1233)">
+<mask id="mask0_174_1233" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-24" y="-24" width="222" height="222">
+<path d="M165.116 165.199C208.215 122.101 208.215 52.2251 165.116 9.12679C122.018 -33.9715 52.1421 -33.9715 9.04388 9.12677C-34.0544 52.225 -34.0544 122.101 9.04388 165.199C52.1421 208.298 122.018 208.298 165.116 165.199Z" fill="white"/>
+>>>>>>> a8a594afa654e5c57ee7fc5c5b3945fdde7dee0b
 </mask>
 <g mask="url(#mask0_204_514)">
 <mask id="mask1_204_514" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-24" y="-24" width="222" height="222">
