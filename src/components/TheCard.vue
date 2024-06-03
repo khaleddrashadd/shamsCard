@@ -27,7 +27,7 @@
         />
       </div>
       <div class="qr-container" v-if="qrData">
-        <qrcode-vue :value="qrData" level="L" :render-as="renderAs"  size="150"/>
+        <qrcode-vue :value="qrData" level="L" :render-as="renderAs" />
       </div>
     </div>
   </div>
