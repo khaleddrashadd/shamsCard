@@ -209,7 +209,7 @@ onMounted(() => {
     bottom: 39%;
   }
   .qr-container {
-      bottom: 14%;
+      bottom: 7%;
   }
 }
 </style>
