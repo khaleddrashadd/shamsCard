@@ -92,7 +92,7 @@ onMounted(() => {
 }
 
 .receiver-position {
-  margin-top: 38px;
+  margin-top: 16px;
 }
 .gallery-wrapper {
   display: flex;
