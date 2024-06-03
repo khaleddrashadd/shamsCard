@@ -27,7 +27,7 @@
         />
       </div>
       <div class="qr-container" v-if="qrData">
-        <qrcode-vue :value="qrData" level="L" :render-as="renderAs" />
+        <qrcode-vue :value="qrData" level="L" :render-as="renderAs"  size="150"/>
       </div>
     </div>
   </div>
@@ -160,26 +160,28 @@ onMounted(() => {
   font-size: 21px;
 }
 .receiver-mail {
-  left: 38%;
+  left: 25%;
   transform: translateY(-4px);
 }
 .receiver-phone {
-  left: 38%;
+  left: 25%;
   transform: translateY(-66px);
+  direction: ltr;
 }
 .receiver-website {
-  left: 38%;
+  left: 25%;
   bottom: 40%;
 }
 
 .qr-container {
   position: absolute;
-  bottom: 23%;
+  bottom: 18%;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
   border: 2px solid white;
 }
+
 
 @media (max-width: 600px) {
   .card-wrapper-left .card-img {
