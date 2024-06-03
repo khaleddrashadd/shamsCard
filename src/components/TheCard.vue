@@ -1,5 +1,5 @@
 <template>
-  <div :class="['card-wrapper-left', deviceTypeClass]">
+  <div class="card-wrapper-left">
     <div ref="cardRef" class="hide-mob" id="el">
       <img :src="imgSrc" alt="Shams-Eids" class="card-img" />
       <div class="receiver-wrapper">
@@ -32,10 +32,10 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import QrcodeVue from "qrcode.vue";
-import { ref, computed, onMounted } from "vue";
+
+import { ref, onMounted } from "vue";
 import imgSrc from "../assets/images/shams-card.jpg";
 import placeHolderImg from "../assets/images/placeholder.png";
 
@@ -58,23 +58,7 @@ const websiteUrl = "shams.gov.sa";
 onMounted(() => {
   emit("getWrapperElement", cardRef.value);
 });
-
-const deviceType = computed(() => {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  if (/android/i.test(userAgent)) {
-    return 'android';
-  }
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    return 'ios';
-  }
-  return 'other';
-});
-
-const deviceTypeClass = computed(() => {
-  return deviceType.value === 'android' ? 'android-style' : deviceType.value === 'ios' ? 'ios-style' : '';
-});
 </script>
-
 <style scoped>
 .card-wrapper-left {
   display: flex;
@@ -84,8 +68,10 @@ const deviceTypeClass = computed(() => {
 }
 
 .card-wrapper-left .card-img {
+  /*max-width: 100%;*/
   height: 100%;
   width: 500px;
+  /* width: 500px; */
 }
 
 .receiver-wrapper {
@@ -117,8 +103,7 @@ const deviceTypeClass = computed(() => {
 .profile-img-container {
   position: absolute;
   top: 13%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 40%;
   overflow: hidden;
   width: 100px;
   height: 100px;
@@ -127,10 +112,9 @@ const deviceTypeClass = computed(() => {
 }
 
 .profile-img {
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  object-position: center center;
 }
 
 .receiver-data {
@@ -187,17 +171,5 @@ const deviceTypeClass = computed(() => {
   .qr-container {
       bottom: 7%;
   }
-}
-
-/* Styles for Android */
-.android-style {
-  background-color: #f0f0f0;
-  /* Add more styles specific to Android */
-}
-
-/* Styles for iOS */
-.ios-style {
-  background-color: #e0e0e0;
-  /* Add more styles specific to iOS */
 }
 </style>

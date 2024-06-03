@@ -21,6 +21,7 @@
     {{ t("message.redo") }}
   </button>
 </template>
+
 <script setup>
 import { useI18n } from "vue-i18n";
 import html2canvas from "html2canvas";
@@ -28,13 +29,8 @@ defineOptions({
   inheritAttrs: false,
 });
 
-// const props = defineProps(["wrapperElement"]);
-
 const { t } = useI18n();
 
-// const element = props.wrapperElement;
-
-// Helper function to convert data URL to Blob
 function dataURItoBlob(dataURI) {
   const byteString = atob(dataURI.split(",")[1]);
   const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
@@ -48,64 +44,46 @@ function dataURItoBlob(dataURI) {
 
 const handleShare = async () => {
   const element = document.getElementById("el");
-  console.log(element)
   element.classList.add("scale");
-  const canvas = await html2canvas(element);
-  document.body.appendChild(canvas);
-  // Convert canvas to data URL
+  const canvas = await html2canvas(element, {
+    scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
+    useCORS: true // Handle CORS issues
+  });
+  element.classList.remove("scale");
   const imageData = canvas.toDataURL("image/jpeg");
-  // Convert data URL to Blob
   const blob = dataURItoBlob(imageData);
-  // Create a File instance from the Blob
-  const filesArray = [
-    new File([blob], "Shams.jpg", { type: "image/jpeg" }),
-  ];
-  if (!navigator.share && !navigator.canShare({ files: filesArray })) {
+  const filesArray = [new File([blob], "Shams.jpg", { type: "image/jpeg" })];
+
+  if (!navigator.share || !navigator.canShare({ files: filesArray })) {
     alert("Your browser does not support this feature");
     return;
   }
 
   try {
-    await navigator.share({
-      files: [...filesArray],
-    });
+    await navigator.share({ files: filesArray });
   } catch (error) {
     console.log(error);
-
-    // alert('Your browser does not support this feature');
   }
 };
 
 const handleDownload = () => {
-    const element = document.getElementById("el");
-
+  const element = document.getElementById("el");
   element.classList.add("scale");
-  if (screen.width < 767) {
-    html2canvas(element).then((canvas) => {
-      document.body.appendChild(canvas);
-      var a = document.createElement("a");
-      a.href = canvas
-        .toDataURL("image/png")
-        .replace("image/png", "image/octet-stream");
-      a.download = "Shams.png";
-      a.click();
-    });
-  } else {
-    html2canvas(element,{
-      quality: 1,
-    }).then((canvas) => {
-      document.body.appendChild(canvas);
-      const a = document.createElement("a");
-      a.href = canvas
-        .toDataURL("image/png")
-        .replace("image/png", "image/octet-stream");
-      a.download = "Shams.png";
-      a.click();
-      a.remove();
-    });
-  }
+
+  html2canvas(element, {
+    scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
+    useCORS: true // Handle CORS issues
+  }).then((canvas) => {
+    element.classList.remove("scale");
+    const a = document.createElement("a");
+    a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    a.download = "Shams.png";
+    a.click();
+    a.remove();
+  });
 };
 </script>
+
 <style scoped>
 .download {
   background: #00c4e5;
@@ -165,5 +143,10 @@ const handleDownload = () => {
   .share-mobile {
     display: block;
   }
+}
+
+/* Ensure the scaling class doesn't affect the final canvas size */
+.scale {
+  transform: scale(1);
 }
 </style>
