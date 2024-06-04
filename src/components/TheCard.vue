@@ -76,13 +76,14 @@ onMounted(() => {
 
 .receiver-wrapper {
   position: absolute;
-  top: 27%;
+  /* top: 27%; */
+  bottom: 64%;
 }
 
 .receiver-name,
 .receiver-position {
   font-weight: 400;
-  font-size: 28px;
+  font-size: 1.5rem;
   color: white;
   margin: 0;
   width: 100%;
@@ -105,8 +106,8 @@ onMounted(() => {
   top: 13%;
   left: 39%;
   overflow: hidden;
-  width: 100px;
-  height: 100px;
+  width: 20%;
+    height: 11%;
   border-radius: 50%;
   border: 3px solid rgb(161, 6, 6);
 }
@@ -154,8 +155,8 @@ onMounted(() => {
     width: 100%;
   }
   .profile-img-container{
-    width: 60px;
-    height: 60px;
+    /* width: 60px;
+    height: 60px; */
   }
   
   .receiver-data {
