@@ -48,6 +48,7 @@
   import { ref, onMounted } from 'vue';
   import imgSrc from '../assets/images/shams-card.jpg';
   import placeHolderImg from '../assets/images/placeholder.png';
+  
 
   const props = defineProps([
     'personName',
