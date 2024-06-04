@@ -66,7 +66,7 @@
 
   const websiteUrl = 'shams.gov.sa';
 
-  const imgSrc=ref(img)
+  const imgSrc = ref(img);
 
   watch(
     () => props.language,
@@ -143,20 +143,24 @@
     position: absolute;
     color: white;
     font-size: 21px;
-  }
-  .receiver-mail {
     left: 25%;
+  }
+
+  .receiver-data:lang(ar) {
+    left: inset;
+    right: 25%;
+  }
+
+  .receiver-mail {
     /* transform: translateY(-4px); */
     bottom: 47%;
   }
   .receiver-phone {
-    left: 25%;
     /* transform: translateY(-66px); */
     bottom: 54%;
     direction: ltr;
   }
   .receiver-website {
-    left: 25%;
     bottom: 40%;
   }
 
