@@ -27,7 +27,7 @@
           >
           <input
             v-if="!isCreated"
-            maxlength="30"
+            maxlength="40"
             class="input-name"
             :class="{ 'red-border': !isNameValid && startValidate }"
             type="text"
