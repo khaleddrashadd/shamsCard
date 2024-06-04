@@ -4,9 +4,9 @@
     :dir="dirEl"
     :lang="langEl">
     <div class="card-wrapper">
-      <!-- <TheLangSwitcher
+      <TheLangSwitcher
         v-model="langEl"
-        @lang-change="handleChangeLang" /> -->
+        @lang-change="handleChangeLang" />
       <TheForm
         @nameEnter="getName"
         @imageEnter="getImg"

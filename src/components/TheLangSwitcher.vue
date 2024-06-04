@@ -28,6 +28,8 @@ import { nextTick } from 'vue';
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-top: 16px;
+    margin-bottom: 16px;
   }
   .lang-switch-btn {
     background-color: #fff;

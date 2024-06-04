@@ -27,7 +27,7 @@
           >
           <input
             v-if="!isCreated"
-            maxlength="40"
+            maxlength="30"
             class="input-name"
             :class="{ 'red-border': !isNameValid && startValidate }"
             type="text"
@@ -47,7 +47,7 @@
           >
           <input
             v-if="!isCreated"
-            maxlength="30"
+            maxlength="50"
             class="input-name"
             :class="{ 'red-border': !isPositionValid && startValidate }"
             type="text"
@@ -122,7 +122,7 @@
   import FormAction from './FormAction.vue';
   import { useI18n } from 'vue-i18n';
 
-  import { shamsLogo, shamsLogoEn } from '@/assets/images';
+  import { shamsLogo, shamsLogoEn } from '../assets/images';
   const props = defineProps(['wrapperElement', 'language']);
 
   const logoSrc = ref(shamsLogo);
