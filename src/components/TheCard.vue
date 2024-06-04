@@ -158,8 +158,14 @@
   .receiver-phone {
     /* transform: translateY(-66px); */
     bottom: 54%;
-    direction: ltr;
+    /* direction: ltr; */
   }
+
+  .receiver-phone p:lang(ar) {
+    direction: ltr;
+    text-align: right;
+  }
+
   .receiver-website {
     bottom: 40%;
   }
