@@ -77,23 +77,32 @@
     }
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     const element = document.getElementById('el');
-    element.classList.add('scale');
 
-    html2canvas(element, {
-      scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
-      useCORS: true, // Handle CORS issues
-    }).then((canvas) => {
-      element.classList.remove('scale');
-      const a = document.createElement('a');
-      a.href = canvas
-        .toDataURL('image/png')
-        .replace('image/png', 'image/octet-stream');
-      a.download = 'Shams.png';
-      a.click();
-      a.remove();
-    });
+    const imgData = await htmlToImage.toPng(element);
+    const a = document.createElement('a');
+    a.href = imgData.replace('image/png', 'image/octet-stream');
+    console.log(a.click)
+    a.download = 'Shams.png';
+    a.click();
+    a.remove();
+
+    // element.classList.add('scale');
+
+    // html2canvas(element, {
+    //   scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
+    //   useCORS: true, // Handle CORS issues
+    // }).then((canvas) => {
+    //   element.classList.remove('scale');
+    //   const a = document.createElement('a');
+    //   a.href = canvas
+    //     .toDataURL('image/png')
+    //     .replace('image/png', 'image/octet-stream');
+    //   a.download = 'Shams.png';
+    //   a.click();
+    //   a.remove();
+    // });
   };
 </script>
 
