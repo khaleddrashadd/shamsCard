@@ -47,7 +47,7 @@
           >
           <input
             v-if="!isCreated"
-            maxlength="30"
+            maxlength="50"
             class="input-name"
             :class="{ 'red-border': !isPositionValid && startValidate }"
             type="text"
