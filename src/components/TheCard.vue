@@ -147,7 +147,7 @@
   }
 
   .receiver-data:lang(ar) {
-    left: inset;
+    left: unset;
     right: 25%;
   }
 
