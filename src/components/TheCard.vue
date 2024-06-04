@@ -72,6 +72,7 @@ onMounted(() => {
   height: 100%;
   width: 500px;
   overflow: hidden;
+  background: red;
 }
 .card-wrapper-left .card-img {
   /*max-width: 100%;*/
