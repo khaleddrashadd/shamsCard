@@ -33,7 +33,6 @@
 <script setup>
   import { useI18n } from 'vue-i18n';
   import html2canvas from 'html2canvas';
-  import domtoimage from 'dom-to-image-more';
   defineOptions({
     inheritAttrs: false,
   });
@@ -53,19 +52,14 @@
 
   const handleShare = async () => {
     const element = document.getElementById('el');
-    const imageData = await domtoimage.toPng(element, {
-      quality: 1,
-      corsImage: true,
-    });
-    console.log(imageData)
     element.classList.add('scale');
     // const imageData = await htmlToImage.toPng(element);
-    // const canvas = await html2canvas(element, {
-    //   scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
-    //   useCORS: true, // Handle CORS issues
-    // });
-    // element.classList.remove('scale');
-    // const imageData = canvas.toDataURL('image/jpeg');
+    const canvas = await html2canvas(element, {
+      scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
+      useCORS: true, // Handle CORS issues
+    });
+    element.classList.remove('scale');
+    const imageData = canvas.toDataURL('image/jpeg');
 
     const blob = dataURItoBlob(imageData);
     const filesArray = [new File([blob], 'Shams.jpg', { type: 'image/jpeg' })];
@@ -85,32 +79,22 @@
   const handleDownload = async () => {
     const element = document.getElementById('el');
 
+
     element.classList.add('scale');
 
-    const imageData = await domtoimage.toPng(element, {
-      quality: 1,
-      corsImage: true,
+    html2canvas(element, {
+      scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
+      useCORS: true, // Handle CORS issues
+    }).then((canvas) => {
+      element.classList.remove('scale');
+      const a = document.createElement('a');
+      a.href = canvas
+        .toDataURL('image/png')
+        .replace('image/png', 'image/octet-stream');
+      a.download = 'Shams.png';
+      a.click();
+      a.remove();
     });
-
-    const a = document.createElement('a');
-    a.href = imageData.replace('image/png', 'image/octet-stream');
-    a.download = 'Shams.png';
-    a.click();
-    a.remove();
-
-    // html2canvas(element, {
-    //   scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
-    //   useCORS: true, // Handle CORS issues
-    // }).then((canvas) => {
-    //   element.classList.remove('scale');
-    //   const a = document.createElement('a');
-    //   a.href = canvas
-    //     .toDataURL('image/png')
-    //     .replace('image/png', 'image/octet-stream');
-    //   a.download = 'Shams.png';
-    //   a.click();
-    //   a.remove();
-    // });
   };
 </script>
 
