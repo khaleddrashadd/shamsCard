@@ -122,7 +122,7 @@
   import FormAction from './FormAction.vue';
   import { useI18n } from 'vue-i18n';
 
-  import { shamsLogo, shamsLogoEn } from '../assets/images';
+  import { shamsLogo, shamsLogoEn } from '@/assets/images';
   const props = defineProps(['wrapperElement', 'language']);
 
   const logoSrc = ref(shamsLogo);

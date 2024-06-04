@@ -80,20 +80,26 @@
   };
 
   const createQR = (contact) => {
-    if (!contact) return (qrData.value = '');
+  if (!contact) return (qrData.value = '');
 
-    const { name, phoneNumber, email, position } = contact;
-    const vCardData = `BEGIN:VCARD
+  const { name, phoneNumber, email, position } = contact;
+  
+  // Split the name into first and last name
+  const nameParts = name.split(' ');
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(' ');
+
+  const vCardData = `BEGIN:VCARD
 VERSION:4.0
-N:${name};;;
+N:${lastName};${firstName};;;
 FN:${name}
 TITLE:${position}
 TEL;TYPE=CELL:${phoneNumber}
 EMAIL;TYPE=WORK,INTERNET:${email}
 END:VCARD`;
 
-    qrData.value = vCardData;
-  };
+  qrData.value = vCardData;
+};
 
   const handleChangeLang = () => {
     locale.value = localStorage.getItem('lang') || 'ar';
