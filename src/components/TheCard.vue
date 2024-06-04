@@ -159,17 +159,17 @@ onMounted(() => {
   }
   
   .receiver-data {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
   .receiver-name {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
   .receiver-position {
-    font-size: 1rem;
+    font-size: 0.75rem;
     margin-top: 10px;
   }
   .receiver-phone {
-    transform: translateY(-41px);
+    /* transform: translateY(-41px); */
   }
   .receiver-website {
     bottom: 39%;
