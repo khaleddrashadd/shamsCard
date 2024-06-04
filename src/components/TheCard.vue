@@ -124,11 +124,13 @@ onMounted(() => {
 }
 .receiver-mail {
   left: 25%;
-  transform: translateY(-4px);
+  /* transform: translateY(-4px); */
+  bottom: 47%;
 }
 .receiver-phone {
   left: 25%;
-  transform: translateY(-66px);
+  /* transform: translateY(-66px); */
+  bottom: 54%;
   direction: ltr;
 }
 .receiver-website {
