@@ -130,6 +130,7 @@
   watch(
     () => props.language,
     (newVal) => {
+      
       logoSrc.value = newVal === 'ar' ? shamsLogo : shamsLogoEn;
     }
   );

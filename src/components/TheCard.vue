@@ -45,8 +45,9 @@
 <script setup>
   import QrcodeVue from 'qrcode.vue';
 
-  import { ref, onMounted } from 'vue';
-  import imgSrc from '../assets/images/shams-card.jpg';
+  import { ref, onMounted, watch } from 'vue';
+  import img from '../assets/images/shams-card.jpg';
+  import imgAr from '../assets/images/shams-card-ar.jpg';
   import placeHolderImg from '../assets/images/placeholder.png';
 
   const props = defineProps([
@@ -64,6 +65,15 @@
   const renderAs = ref('svg');
 
   const websiteUrl = 'shams.gov.sa';
+
+  const imgSrc=ref(img)
+
+  watch(
+    () => props.language,
+    (newVal) => {
+      imgSrc.value = newVal === 'ar' ? imgAr : img;
+    }
+  );
 
   onMounted(() => {
     emit('getWrapperElement', cardRef.value);
@@ -168,10 +178,8 @@
       width: calc(100% + 3px);
       object-fit: cover;
     }
-    .profile-img-container {
-      /* width: 60px;
-    height: 60px; */
-    }
+    /* .profile-img-container {
+    } */
 
     .receiver-data {
       font-size: 0.75rem;
@@ -183,9 +191,9 @@
       font-size: 0.75rem;
       margin-top: 10px;
     }
-    .receiver-phone {
-      /* transform: translateY(-41px); */
-    }
+    /* .receiver-phone {
+      transform: translateY(-41px); 
+    } */
     .receiver-website {
       bottom: 39%;
     }
@@ -198,10 +206,10 @@
       height: 100%;
       width: 100%;
     }
-    .profile-img-container {
-      /* width: 60px;
-    height: 60px; */
-    }
+    /* .profile-img-container {
+       width: 60px;
+    height: 60px; 
+    } */
 
     .receiver-data {
       font-size: 0.75rem;

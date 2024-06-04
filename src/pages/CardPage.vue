@@ -38,11 +38,11 @@
 
   const { locale } = useI18n();
 
-  // const language =
-  //   localStorage.getItem('lang') ||
-  //   window?.navigator?.language.toLocaleLowerCase().slice(0, 2) ||
-  //   'ar';
-  const language = 'en';
+  const language =
+    localStorage.getItem('lang') ||
+    window?.navigator?.language.toLocaleLowerCase().slice(0, 2) ||
+    'ar';
+  // const language = 'en';
 
   const dirEl = ref(language === 'ar' ? 'rtl' : 'ltr');
   const langEl = ref(language);
