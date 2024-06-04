@@ -179,4 +179,35 @@ onMounted(() => {
       bottom: 7%;
   }
 }
+@media (max-width: 440px) {
+  .card-wrapper-left .card-img {
+    height: 100%;
+    width: 100%;
+  }
+  .profile-img-container{
+    /* width: 60px;
+    height: 60px; */
+  }
+  
+  .receiver-data {
+    font-size: 0.75rem;
+  }
+  .receiver-name {
+    font-size: 0.75rem;
+  }
+  .receiver-position {
+    font-size: 0.75rem;
+    margin-top: 10px;
+  }
+  .receiver-phone {
+    bottom: 53%;
+    /* transform: translateY(-41px); */
+  }
+  .receiver-website {
+    bottom: 39%;
+  }
+  .qr-container {
+      bottom: 7%;
+  }
+}
 </style>
