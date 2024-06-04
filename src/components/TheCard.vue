@@ -48,7 +48,7 @@
   import { ref, onMounted } from 'vue';
   import imgSrc from '../assets/images/shams-card.jpg';
   import placeHolderImg from '../assets/images/placeholder.png';
-  
+
 
   const props = defineProps([
     'personName',
@@ -110,6 +110,7 @@
   @media (max-width: 1157px) {
     .card-wrapper-left {
       flex-direction: column;
+      overflow: hidden;
     }
   }
   .profile-img-container {
@@ -164,10 +165,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: calc(100% - 311px);
+      height: calc(100%);
       width: calc(100% + 3px);
       object-fit: cover;
-      aspect-ratio: 467.59/834.87;
     }
     .profile-img-container {
       /* width: 60px;

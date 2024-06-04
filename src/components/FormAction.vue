@@ -33,6 +33,7 @@
 <script setup>
   import { useI18n } from 'vue-i18n';
   import html2canvas from 'html2canvas';
+  import * as htmlToImage from 'html-to-image';
   defineOptions({
     inheritAttrs: false,
   });
@@ -53,13 +54,14 @@
   const handleShare = async () => {
     const element = document.getElementById('el');
     element.classList.add('scale');
-    const canvas = await html2canvas(element, {
-      scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
-      useCORS: true, // Handle CORS issues
+    const imageData = await htmlToImage.toPng(element);
+    // const canvas = await html2canvas(element, {
+    //   scale: window.devicePixelRatio, // Use the device pixel ratio for better quality
+    //   useCORS: true, // Handle CORS issues
+    // });
+    // element.classList.remove('scale');
+    // const imageData = canvas.toDataURL('image/jpeg');
 
-    });
-    element.classList.remove('scale');
-    const imageData = canvas.toDataURL('image/jpeg');
     const blob = dataURItoBlob(imageData);
     const filesArray = [new File([blob], 'Shams.jpg', { type: 'image/jpeg' })];
 
