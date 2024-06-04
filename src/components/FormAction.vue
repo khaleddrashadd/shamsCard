@@ -79,13 +79,6 @@
   const handleDownload = async () => {
     const element = document.getElementById('el');
 
-    // const imgData = await htmlToImage.toPng(element);
-    // const a = document.createElement('a');
-    // a.href = imgData.replace('image/png', 'image/octet-stream');
-    // console.log(a.click)
-    // a.download = 'Shams.png';
-    // a.click();
-    // a.remove();
 
     element.classList.add('scale');
 
