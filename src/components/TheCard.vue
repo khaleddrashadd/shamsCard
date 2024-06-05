@@ -26,7 +26,7 @@
         v-for="(src, index) in gallery"
         :key="index">
         <img
-          :src
+          :src="src"
           alt="" />
       </div>
     </div>
@@ -39,12 +39,10 @@
     img_2,
     img_3,
     img_4,
-    img_5,
     img_en_1,
     img_en_2,
     img_en_3,
     img_en_4,
-    img_en_5,
   } from '../assets/images';
   import { watchEffect } from 'vue';
 
@@ -53,7 +51,7 @@
 
   const cardRef = ref(null);
   const isLight = ref(false);
-  const imgTop = ref(props.language === 'ar' ? '21.5%' : '20.5%');
+  const imgTop = ref(props.language === 'ar' ? '27%' : '21%');
   const imgRight = ref('30%');
 
   onMounted(() => {
@@ -65,12 +63,12 @@
       ar: {
         src: img_1,
         right: '30%',
-        top: '21.5%',
+        top: '27%',
       },
       en: {
         src: img_en_1,
         right: '30%',
-        top: '20.5%',
+        top: '21%',
       },
       dark: false,
     },
@@ -78,12 +76,12 @@
       ar: {
         src: img_2,
         right: '30%',
-        top: '18%',
+        top: '47.1%',
       },
       en: {
         src: img_en_2,
         right: '30%',
-        top: '17%',
+        top: '47.5%',
       },
       dark: true,
     },
@@ -91,38 +89,25 @@
       ar: {
         src: img_3,
         right: '30%',
-        top: '27%',
+        top: '11%',
       },
       en: {
         src: img_en_3,
         right: '30%',
-        top: '25%',
+        top: '11%',
       },
-      dark: false,
+      dark: true,
     },
     3: {
       ar: {
         src: img_4,
         right: '30%',
-        top: '9.5%',
+        top: '20.5%',
       },
       en: {
         src: img_en_4,
         right: '30%',
-        top: '10%',
-      },
-      dark: true,
-    },
-    4: {
-      ar: {
-        src: img_5,
-        right: '30%',
-        top: '13.5%',
-      },
-      en: {
-        src: img_en_5,
-        right: '30%',
-        top: '10%',
+        top: '19.5%',
       },
       dark: false,
     },
@@ -136,7 +121,7 @@
     () => props.language,
     (newVal) => {
       gallery.value = Object.values(imgsMap).map((item) => item[newVal].src);
-      imgTop.value = newVal === 'ar' ? '20.5%' : '19.5%';
+      imgTop.value = newVal === 'ar' ? '27%' : '21%';
       isLight.value = false;
     }
   );
