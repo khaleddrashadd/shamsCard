@@ -143,12 +143,12 @@
     position: absolute;
     color: white;
     font-size: 21px;
-    left: 25%;
+    left: 10%;
   }
 
   .receiver-data:lang(ar) {
     left: unset;
-    right: 25%;
+    right: 10%;
   }
 
   .receiver-mail {
