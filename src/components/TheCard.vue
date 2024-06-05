@@ -76,12 +76,12 @@
       ar: {
         src: img_2,
         right: '30%',
-        top: '47.1%',
+        top: '47%',
       },
       en: {
         src: img_en_2,
         right: '30%',
-        top: '47.5%',
+        top: '47%',
       },
       dark: true,
     },
@@ -176,6 +176,12 @@
     /* overflow: hidden; */
     font-weight: bold;
     display: inline-block;
+  }
+  @media screen and (max-width: 576px){
+    .receiver-name{
+      font-size: 12px;
+
+    }
   }
   .gallery-wrapper {
     display: flex;
