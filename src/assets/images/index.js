@@ -6,8 +6,8 @@ import img_3 from './adha-3.webp';
 import img_en_3 from './adha-3-en.webp';
 import img_4 from './adha-4.webp';
 import img_en_4 from './adha-4-en.webp';
-import shamsLogo from './shams-logo.png';
-import shamsLogoEn from './shams-logo-en.png';
+import shamsLogo from './shams-logo.svg';
+import shamsLogoEn from './shams-logo-en.svg';
 
 export {
   img_1,
